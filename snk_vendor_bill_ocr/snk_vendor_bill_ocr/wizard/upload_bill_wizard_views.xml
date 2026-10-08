@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_vendor_bill_ocr_upload_wizard_form" model="ir.ui.view">
+        <field name="name">snk.vendor.bill.ocr.upload.wizard.form</field>
+        <field name="model">snk.vendor.bill.ocr.upload.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Digitalizar factura de proveedor">
+                <group>
+                    <!-- El dominio de journal_id necesita company_id también para
+                         usuarios sin base.group_multi_company. -->
+                    <field name="company_id" invisible="1"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="journal_id" options="{'no_create': True}"/>
+                    <field name="bill_file" filename="bill_filename" widget="binary"/>
+                    <field name="bill_filename" invisible="1"/>
+                </group>
+                <div class="alert alert-info" role="alert">
+                    Se creará una factura de proveedor en borrador y el procesamiento se realizará en segundo plano. Se admiten PDF, JPEG, PNG y TIFF.
+                </div>
+                <footer>
+                    <button name="action_create_bill" string="Crear y digitalizar" type="object" class="btn-primary"/>
+                    <button string="Cancelar" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_vendor_bill_ocr_upload" model="ir.actions.act_window">
+        <field name="name">Digitalizar factura</field>
+        <field name="res_model">snk.vendor.bill.ocr.upload.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="groups_id" eval="[(4, ref('account.group_account_invoice')), (4, ref('snk_vendor_bill_ocr.group_vendor_bill_ocr_user'))]"/>
+    </record>
+
+    <record id="action_vendor_bill_ocr_my_bills" model="ir.actions.act_window">
+        <field name="name">Mis facturas de compra OCR</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('move_type', '=', 'in_invoice')]</field>
+        <field name="context">{'default_move_type': 'in_invoice'}</field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+        <field name="groups_id" eval="[(4, ref('snk_vendor_bill_ocr.group_vendor_bill_ocr_user'))]"/>
+    </record>
+
+    <record id="menu_vendor_bill_ocr_root" model="ir.ui.menu">
+        <field name="name">OCR Facturas</field>
+        <field name="active" eval="False"/>
+    </record>
+
+    <menuitem id="menu_vendor_bill_ocr_upload"
+              name="Digitalizar factura"
+              parent="account.menu_finance_payables"
+              action="action_vendor_bill_ocr_upload"
+              groups="account.group_account_invoice,snk_vendor_bill_ocr.group_vendor_bill_ocr_user"
+              sequence="30"/>
+
+    <menuitem id="menu_vendor_bill_ocr_my_bills"
+              name="Mis facturas de compra"
+              parent="account.menu_finance_payables"
+              action="action_vendor_bill_ocr_my_bills"
+              groups="snk_vendor_bill_ocr.group_vendor_bill_ocr_user"
+              sequence="31"/>
+</odoo>

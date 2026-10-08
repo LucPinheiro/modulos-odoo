@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_vendor_bill_ocr" model="ir.ui.view">
+        <field name="name">account.move.form.vendor.bill.ocr</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/field[@name='state']" position="before">
+                <button name="action_vendor_bill_ocr_process_now"
+                        string="Procesar OCR"
+                        type="object"
+                        class="btn-secondary"
+                        groups="account.group_account_invoice,snk_vendor_bill_ocr.group_vendor_bill_ocr_user"
+                        attrs="{'invisible': ['|', '|', ('move_type', '!=', 'in_invoice'), ('state', '!=', 'draft'), ('vendor_bill_ocr_state', 'not in', ['pending', 'processing'])]}"/>
+                <button name="action_vendor_bill_ocr_retry"
+                        string="Reintentar OCR"
+                        type="object"
+                        class="btn-secondary"
+                        groups="account.group_account_invoice,snk_vendor_bill_ocr.group_vendor_bill_ocr_user"
+                        attrs="{'invisible': ['|', '|', ('move_type', '!=', 'in_invoice'), ('state', '!=', 'draft'), ('vendor_bill_ocr_state', '!=', 'error')]}"/>
+                <button name="action_vendor_bill_ocr_mark_reviewed"
+                        string="Confirmar revisión OCR"
+                        type="object"
+                        class="oe_highlight"
+                        groups="account.group_account_invoice,snk_vendor_bill_ocr.group_vendor_bill_ocr_user"
+                        attrs="{'invisible': ['|', '|', ('move_type', '!=', 'in_invoice'), ('state', '!=', 'draft'), ('vendor_bill_ocr_state', '!=', 'review')]}"/>
+            </xpath>
+
+            <xpath expr="//form/sheet[div[@name='button_box']]" position="before">
+                <field name="vendor_bill_ocr_state" invisible="1"/>
+                <div class="alert alert-info mb-0" role="alert"
+                     attrs="{'invisible': [('vendor_bill_ocr_state', 'not in', ['pending', 'processing'])]}">
+                    <strong>OCR en curso.</strong> La factura se actualizará automáticamente. El botón «Procesar OCR» permite avanzar una etapa ahora.
+                </div>
+                <div class="alert alert-warning mb-0" role="alert"
+                     attrs="{'invisible': [('vendor_bill_ocr_state', '!=', 'review')]}">
+                    <strong>Revisión necesaria.</strong>
+                    <field name="vendor_bill_ocr_warning" nolabel="1" readonly="1"/>
+                </div>
+                <div class="alert alert-danger mb-0" role="alert"
+                     attrs="{'invisible': [('vendor_bill_ocr_state', '!=', 'error')]}">
+                    <strong>Error de OCR.</strong>
+                    <field name="vendor_bill_ocr_error" nolabel="1" readonly="1"/>
+                </div>
+                <div class="alert alert-success mb-0" role="alert"
+                     attrs="{'invisible': [('vendor_bill_ocr_state', '!=', 'done')]}">
+                    <strong>OCR revisado.</strong> La factura sigue en borrador y ya puede contabilizarse.
+                </div>
+            </xpath>
+
+            <xpath expr="//page[@name='invoice_tab']" position="after">
+                <page name="vendor_bill_ocr_tab" string="OCR"
+                      attrs="{'invisible': ['|', ('move_type', '!=', 'in_invoice'), ('vendor_bill_ocr_state', '=', 'not_used')]}" >
+                    <group>
+                        <group string="Resultado">
+                            <field name="vendor_bill_ocr_state" widget="badge" readonly="1"/>
+                            <field name="vendor_bill_ocr_vendor_name" readonly="1"/>
+                            <field name="vendor_bill_ocr_vendor_vat" readonly="1"/>
+                            <field name="vendor_bill_ocr_customer_vat" readonly="1"/>
+                            <field name="vendor_bill_ocr_vendor_address" readonly="1"/>
+                            <field name="vendor_bill_ocr_confidence" readonly="1"/>
+                            <field name="vendor_bill_ocr_detected_iban" readonly="1"/>
+                            <field name="vendor_bill_ocr_payment_term" readonly="1"/>
+                        </group>
+                        <group string="Importes y documento">
+                            <field name="vendor_bill_ocr_subtotal" readonly="1"/>
+                            <field name="vendor_bill_ocr_tax_total" readonly="1"/>
+                            <field name="vendor_bill_ocr_invoice_total" readonly="1"/>
+                            <field name="vendor_bill_ocr_tax_rates" readonly="1"/>
+                            <field name="vendor_bill_ocr_source_pages" readonly="1"/>
+                            <field name="vendor_bill_ocr_processed_pages" readonly="1"/>
+                            <field name="vendor_bill_ocr_source_attachment_id" readonly="1" options="{'no_create': True}"/>
+                            <field name="vendor_bill_ocr_duplicate_id" readonly="1" options="{'no_create': True}"
+                                   attrs="{'invisible': [('vendor_bill_ocr_duplicate_id', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <group string="Revisión">
+                        <field name="vendor_bill_ocr_review_note" placeholder="Explique los ajustes o la aceptación de un posible duplicado..."
+                               attrs="{'readonly': [('vendor_bill_ocr_state', '=', 'done')]}"/>
+                        <field name="vendor_bill_ocr_reviewed_by_id" readonly="1"/>
+                        <field name="vendor_bill_ocr_reviewed_at" readonly="1"/>
+                        <field name="vendor_bill_ocr_warning" readonly="1"/>
+                        <field name="vendor_bill_ocr_error" readonly="1"/>
+                    </group>
+                    <group string="Diagnóstico" groups="base.group_system">
+                        <field name="vendor_bill_ocr_attempts" readonly="1"/>
+                        <field name="vendor_bill_ocr_next_retry" readonly="1"/>
+                        <field name="vendor_bill_ocr_submitted_at" readonly="1"/>
+                        <field name="vendor_bill_ocr_processed_at" readonly="1"/>
+                        <field name="vendor_bill_ocr_operation_url" readonly="1"/>
+                        <field name="vendor_bill_ocr_usage_log_id" readonly="1"/>
+                        <field name="vendor_bill_ocr_raw_response" readonly="1"
+                               attrs="{'invisible': [('vendor_bill_ocr_raw_response', '=', False)]}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_invoice_tree_vendor_bill_ocr" model="ir.ui.view">
+        <field name="name">account.invoice.tree.vendor.bill.ocr</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="invoice_date" position="after">
+                <field name="vendor_bill_ocr_state" optional="show" widget="badge"
+                       decoration-info="vendor_bill_ocr_state in ['pending', 'processing']"
+                       decoration-warning="vendor_bill_ocr_state == 'review'"
+                       decoration-danger="vendor_bill_ocr_state == 'error'"
+                       decoration-success="vendor_bill_ocr_state == 'done'"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_invoice_filter_vendor_bill_ocr" model="ir.ui.view">
+        <field name="name">account.invoice.search.vendor.bill.ocr</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="vendor_bill_ocr_vendor_name"/>
+                <field name="vendor_bill_ocr_state"/>
+            </field>
+            <filter name="to_check" position="after">
+                <filter string="OCR pendiente" name="vendor_bill_ocr_pending" domain="[('vendor_bill_ocr_state', 'in', ['pending', 'processing'])]"/>
+                <filter string="OCR a revisar" name="vendor_bill_ocr_review" domain="[('vendor_bill_ocr_state', '=', 'review')]"/>
+                <filter string="OCR con error" name="vendor_bill_ocr_error" domain="[('vendor_bill_ocr_state', '=', 'error')]"/>
+            </filter>
+            <filter name="status" position="after">
+                <filter string="Estado OCR" name="group_vendor_bill_ocr_state" domain="[]" context="{'group_by': 'vendor_bill_ocr_state'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

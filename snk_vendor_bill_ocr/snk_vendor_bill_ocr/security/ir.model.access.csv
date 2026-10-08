@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vendor_bill_ocr_upload,Subir facturas con OCR,model_snk_vendor_bill_ocr_upload_wizard,account.group_account_invoice,1,1,1,1
+access_vendor_bill_ocr_upload_user,Subir facturas con OCR (usuario),model_snk_vendor_bill_ocr_upload_wizard,snk_vendor_bill_ocr.group_vendor_bill_ocr_user,1,0,1,0
+access_vendor_bill_ocr_account_move_user,Facturas OCR propias,account.model_account_move,snk_vendor_bill_ocr.group_vendor_bill_ocr_user,1,1,1,0
+access_vendor_bill_ocr_account_move_line_user,Lineas facturas OCR propias,account.model_account_move_line,snk_vendor_bill_ocr.group_vendor_bill_ocr_user,1,1,1,0
+access_vendor_bill_ocr_journal_user,Diarios para OCR,account.model_account_journal,snk_vendor_bill_ocr.group_vendor_bill_ocr_user,1,0,0,0
+access_vendor_bill_ocr_tax_user,Impuestos para OCR,account.model_account_tax,snk_vendor_bill_ocr.group_vendor_bill_ocr_user,1,0,0,0
+access_vendor_bill_ocr_account_user,Cuentas para OCR,account.model_account_account,snk_vendor_bill_ocr.group_vendor_bill_ocr_user,1,0,0,0
+access_vendor_bill_ocr_payment_term_user,Plazos para OCR,account.model_account_payment_term,snk_vendor_bill_ocr.group_vendor_bill_ocr_user,1,0,0,0
+access_vendor_bill_ocr_mapping_manager,Administrar reglas OCR de facturas,model_snk_vendor_bill_ocr_mapping_rule,account.group_account_manager,1,1,1,1
+access_vendor_bill_ocr_usage_manager,Consultar consumo OCR de facturas,model_snk_vendor_bill_ocr_usage_log,account.group_account_manager,1,0,0,0

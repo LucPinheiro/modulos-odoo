@@ -1,0 +1,23 @@
+{
+    "name": "SNK Vendor Bill OCR",
+    "summary": "Create draft vendor bills from PDF or photos with Azure Document Intelligence",
+    "version": "16.0.1.0.1",
+    "category": "Accounting/Accounting",
+    "author": "Sinerkia Innovación y Desarrollo",
+    "website": "https://www.sinerkia.com",
+    "license": "LGPL-3",
+    "depends": ["account", "project"],
+    "data": [
+        "security/security.xml",
+        "security/ir.model.access.csv",
+        "data/ir_cron.xml",
+        "views/res_config_settings_views.xml",
+        "views/mapping_rule_views.xml",
+        "views/usage_log_views.xml",
+        "views/account_move_views.xml",
+        "wizard/upload_bill_wizard_views.xml",
+    ],
+    "uninstall_hook": "uninstall_hook",
+    "installable": True,
+    "application": False,
+}

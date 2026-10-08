@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_vendor_bill_ocr_usage_log_tree" model="ir.ui.view">
+        <field name="name">snk.vendor.bill.ocr.usage.log.tree</field>
+        <field name="model">snk.vendor.bill.ocr.usage.log</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" delete="false">
+                <field name="attempted_at"/>
+                <field name="move_id"/>
+                <field name="status" widget="badge"
+                       decoration-info="status in ['attempted', 'accepted']"
+                       decoration-success="status == 'succeeded'"
+                       decoration-danger="status == 'failed'"/>
+                <field name="requested_page_cap"/>
+                <field name="page_count"/>
+                <field name="http_status" optional="hide"/>
+                <field name="error" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_vendor_bill_ocr_usage_log" model="ir.actions.act_window">
+        <field name="name">Consumo OCR de facturas</field>
+        <field name="res_model">snk.vendor.bill.ocr.usage.log</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+    </record>
+
+    <menuitem id="menu_vendor_bill_ocr_usage_log"
+              name="Consumo OCR de facturas"
+              parent="account.account_invoicing_menu"
+              action="action_vendor_bill_ocr_usage_log"
+              groups="account.group_account_manager"
+              sequence="96"/>
+</odoo>
+
