@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="commerce_sale_order_cart_template_inherit"  inherit_id="website_sale.short_cart_summary">
+            <xpath expr="//div/div/h4" position="after">
+                <b>Order sale: <t t-esc="website_sale_order.name"/> </b>
+            </xpath>
+    </template>
+
+    <template id="commerce_sale_order_description_ficha_product_template_inherit"  inherit_id="website_sale.product">
+        <xpath expr="//p[@t-field='product.description_sale']" position="before">
+            <p t-field="product.categ_id" class="text-muted my-2"  />
+        </xpath>
+    </template> 
+
+    <!-- Decription Zoom -->
+    <!-- <template id="commerce_sale_order_description_product_template_inherit"  inherit_id="website_sale.product" >
+        <xpath expr="//t/div" position="after">
+            <div itemprop="description" t-field="product.website_description" class="oe_structure oe_empty mt16" id="product_full_description"/>
+        </xpath>
+    </template>
+
+    <template id="commerce_sale_order_description_product_template_inherit"  inherit_id="website_sale.products_item">
+        <xpath expr="//*[hasclass('product_price')]" position="after">
+            <div class="oe_subdescription" contenteditable="false">
+                <div itemprop="description" t-field="product.description_sale"/>
+            </div>
+        </xpath>
+    </template> -->
+
+    <template id="commerce_sale_order_category_product_ficha_template_inherit" inherit_id="website_sale.products_item">
+        <xpath expr="//div/div/h6" position="after">
+            <h6 class="o_wsale_products_item_title mb-1">
+            <a class="text-muted text-decoration-none" t-field="product.categ_id" />
+            </h6>
+        </xpath>
+    </template>
+
+</odoo>
