@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="connection_view_tree" model="ir.ui.view">
+        <field name="name">connection.view.tree</field>
+        <field name="model">connection</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" string="Connection" readonly="1" />
+                <field name="type_id" string="Type"/>
+                <field name="origin" string="Origin"/>
+                <field name="destination" string="Destination" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="connection_type_view_tree" model="ir.ui.view">
+        <field name="name">connection.type.view.tree</field>
+        <field name="model">connection.type</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" string="Type"/>
+                <field name="attribute_ids" string="Atributes" widget='many2many_tags'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="atribute_type_view_tree" model="ir.ui.view">
+        <field name="name">atribute.type.view.tree</field>
+        <field name="model">attribute</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" string="Attribute"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="route_calculator_action" model="ir.actions.act_window">
+        <field name="name">Route Calculator</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">route.calculator</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <menuitem
+        id="route_calculator_menu"
+        name="Route Calculator"
+        action="route_calculator_action"
+        sequence="1"/>
+
+
+
+
+
+
+    <record id="route_calculator_city_action" model="ir.actions.act_window">
+        <field name="res_model">city</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <!-- <field name="target">new</field> -->
+    </record>
+
+    <menuitem 
+            id="calculator_ruta_city_menu_item_1"
+            name="Citys"
+            parent="route_calculator_menu"
+            action="route_calculator_city_action"
+            sequence="1" />
+
+
+
+
+
+    <record id="route_calculator_connection_action" model="ir.actions.act_window">
+        <field name="res_model">connection</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+
+    <menuitem 
+            id="calculator_ruta_connection_menu_item_2"
+            name="Connections"
+            parent="route_calculator_menu"
+            action="route_calculator_connection_action"
+            sequence="2" />
+    
+
+      
+
+
+
+    <record id="route_calculator_connection_citys_action" model="ir.actions.act_window">
+        <field name="res_model">connection</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+
+    <menuitem 
+            id="calculator_ruta_connection_citys_menu_item_2_1"
+            name="Connections"
+            parent="CalculadorRutas.calculator_ruta_connection_menu_item_2"
+            action="route_calculator_connection_citys_action"
+            sequence="1" />
+    
+
+
+
+    <record id="route_calculator_connection_type_action" model="ir.actions.act_window">
+        <field name="res_model">connection.type</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+
+    <menuitem 
+            id="calculator_ruta_connection_menu_item_2_2"
+            name="Connections Type"
+            parent="CalculadorRutas.calculator_ruta_connection_menu_item_2"
+            action="route_calculator_connection_type_action"
+            sequence="2" />
+    
+    <record id="route_calculator_type_attribute_action" model="ir.actions.act_window">
+        <field name="res_model">attribute</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem 
+            id="calculator_ruta_connection_menu_item_2_3"
+            name="Atributes"
+            parent="CalculadorRutas.calculator_ruta_connection_menu_item_2"
+            action="route_calculator_type_attribute_action"
+            sequence="3" />
+        
+
+
+</odoo>

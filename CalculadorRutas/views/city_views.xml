@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="city_view_tree" model="ir.ui.view">
+        <field name="name">city.view.tree</field>
+        <field name="model">city</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

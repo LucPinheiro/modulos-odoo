@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="route_calculator_view_tree" model="ir.ui.view">
+        <field name="name">route.calculator.view.tree</field>
+        <field name="model">route.calculator</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="type_id" string="Type"/>
+               <field name="connection_id" domain="[('name','=', type_id)]" attrs="{'readonly':[('type_id', '=', False)]}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="route_calculator_view_form" model="ir.ui.view">
+        <field name="name">route.calculator.view.form</field>
+        <field name="model">route.calculator</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="type_id" string="Type"/>
+                        <field name="connection_id" domain="[('type_id','=', type_id)]" attrs="{'readonly':[('type_id', '=', False)]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+ 
+</odoo>
