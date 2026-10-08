@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- 
+    <template id="commerce_sale_order_description_ficha_product_template_inherit"  inherit_id="website_sale.product">
+        <xpath expr="//p[@t-field='product.description_sale']" position="before">
+            <p t-field="product.categ_id" class="text-muted my-2"  />
+        </xpath>
+    </template>  -->
+
+   <template id="template_id_hide_category_shop" inherit_id="website_sale.products_categories_list">
+        <xpath expr="//h6" position="after">
+            <h6 t-attf-class="o_categories_collapse_title mb-3 {{_titleClasses}}"><b>Categories</b></h6>
+        </xpath>
+    
+
+        <xpath expr="//div/ul[hasclass('nav')]" position="after">
+            <ul class="nav d-flex flex-column my-2">
+                <li class="nav-item mb-1">
+                    <div t-att-data-link-href="keep('/shop', category=0)" class="form-check d-inline-block">
+                        <input type="radio" t-attf-name="wsale_categories_radios{{_radioGroup}}" class="form-check-input pe-none o_not_editable" t-att-id="all_products" t-att-value="all_products" t-att-checked="'true' if not category else None"/>
+                        <label class="form-check-label fw-normal" t-att-for="all_products">All Products_3</label>
+                    </div>
+                </li>
+                <!-- <t t-foreach="categories" t-as="c">
+                    <t t-call="website_sale.categories_recursive"  t-att-checked="'false' if cat"/>
+                </t>  -->
+                <xpath expr="//label/[@data-oe-expression='c.name']" position="attributes">
+                    <attribute name="t-if">False</attribute>
+                </xpath>
+                <label class="form-check-label fw-normal" data-oe-xpath="/t[1]/div[1]/label[1]" for="13" data-oe-model="product.public.category"
+                 data-oe-id="13" 
+                 data-oe-field="name" data-oe-type="char" data-oe-expression="c.name">portada-muebles</label>
+            </ul>
+        </xpath> 
+
+
+   </template>
+
+
+    
+    <template id="template_id_hide_name_product_shop" inherit_id="website_sale.products_item">
+        <xpath expr="//a[hasclass('text-primary')]" position="attributes">
+                <attribute name="t-if">False</attribute>
+        </xpath> 
+    
+        <xpath expr="//a[hasclass('text-primary')]" position="after">
+            <a class="text-warning text-decoration-none" itemprop="name" t-att-href="product_href" t-att-content="product.name" t-field="product.name" />
+       
+        </xpath>
+<!-- 
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/website_sale/static/src/scss/website_sale.scss" />
+        </xpath>
+         -->
+         
+
+   </template> 
+
+       <template id="assets_frontend" inherit_id="website_sale.products_item">
+            <xpath expr="." position="inside">
+
+                <link rel="stylesheet" type="text/scss" href="e-commerce_sale_order_hide_category_shop/static/src/scss/website_sale.scss" />
+
+            </xpath>
+        </template> 
+
+
+    <!-- <template id="o_wsale_product_information" inherit_id="website_sale.products_item">
+        <xpath expr="//form[hasclass('card')]" position="inside">
+            <div style=" background-color: #D09724"> 
+
+            </div>
+            
+        </xpath>
+    </template> -->
+
+
+<!-- 
+    <t>
+      .example-css-class {
+        background-color: red;
+      }
+    </t> -->
+
+
+
+
+    <!-- domain="[('active', '=', False)]" -->
+    <!-- <xpath expr="//div//input[@id='contact2']" position="attributes">
+        <attribute name="t-if">False</attribute>
+    </xpath> -->
+
+
+
+
+
+
+
+</odoo>
