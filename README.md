@@ -105,9 +105,9 @@ El propósito de este repositorio es actuar como un espacio de despliegue centra
 
 Senior Odoo Developer • Odoo Functional Consultant • Python Developer
 
-[![GitHub](https://shields.io)](https://github.com)
-[![Portfolio](https://shields.io)](https://github.io)
+[![GitHub](https://shields.io)](https://github.com) [![Portfolio](https://shields.io)](https://github.io)
 
 *No dudes en conectar o abrir una incidencia si encuentras algún comportamiento inesperado.*
+
 
 
