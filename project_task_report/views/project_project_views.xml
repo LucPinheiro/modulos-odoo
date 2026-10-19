@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_project_views_form" model="ir.ui.view"> 
+        <field name="name">project.project.form (I2t Project Task Report)</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="analyzable_project" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_project_views_search" model="ir.ui.view">
+        <field name="name">project.project.search (I2t Project Task Report)</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_project_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='own_projects']" position="after"> 
+                <filter name="analyzable_project" string="Analyzable Project" domain="[('analyzable_project', '=', True)]" />
+                <separator />
+            </xpath>    
+            <xpath expr="//filter[@name='groupby_stage']" position="after"> 
+                <filter name="analyzable_project" string="Analyzable Project" context="{'group_by': 'analyzable_project'}" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_project_user_search" model="ir.ui.view">
+        <field name="name">report.project.task.user.search (I2t Project Task Report)</field>
+        <field name="model">report.project.task.user</field>
+        <field name="inherit_id" ref="project.view_task_project_user_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_team_projects']" position="after">
+                <separator/>
+                <filter name="analyzable_project" string="Analyzable Projects" domain="[('project_id.analyzable_project', '=', True)]"/>
+            </xpath>
+            <xpath expr="//filter[@name='own_projects']" position="before">
+                <separator/>
+            </xpath>
+            <xpath expr="//filter[@name='my_tasks']" position="before">
+                <separator/>
+            </xpath>
+            <xpath expr="//filter[@name='my_tasks']" position="after">
+                <filter name="filter_active_task" string="Active Task" domain="[('task_id.task_status', 'not in', ('done', 'reject') )]"/>
+                <filter name="filter_finished_task" string="Finished Task" domain="[('task_id.task_status', 'not in', ('backlog', 'to_do', 'doing'))]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

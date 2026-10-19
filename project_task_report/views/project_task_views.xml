@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_task_views_search" model="ir.ui.view"> 
+        <field name="name">project.task.search (I2t Project Task Report)</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='late']" position="before">
+                <filter name="filter_active_task" string="Active Task" domain="[('task_status', 'not in', ('done', 'reject') )]" />
+                <filter name="filter_finished_task" string="Finished Task" domain="[('task_status', 'not in', ('backlog', 'to_do', 'doing'))]" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

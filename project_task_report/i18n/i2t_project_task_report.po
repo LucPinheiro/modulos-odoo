@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* i2t_project_task_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-30 14:13+0000\n"
+"PO-Revision-Date: 2023-11-30 15:16+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4\n"
+
+#. module: i2t_project_task_report
+#: model_terms:ir.ui.view,arch_db:i2t_project_task_report.project_task_views_search
+#: model_terms:ir.ui.view,arch_db:i2t_project_task_report.view_task_project_user_search
+msgid "Active Task"
+msgstr "Tareas activas"
+
+#. module: i2t_project_task_report
+#: model:ir.model.fields,field_description:i2t_project_task_report.field_project_project__analyzable_project
+msgid "Analyzable"
+msgstr "Analizable"
+
+#. module: i2t_project_task_report
+#: model_terms:ir.ui.view,arch_db:i2t_project_task_report.project_project_views_search
+msgid "Analyzable Project"
+msgstr "Proyectos analizables"
+
+#. module: i2t_project_task_report
+#: model_terms:ir.ui.view,arch_db:i2t_project_task_report.view_task_project_user_search
+msgid "Analyzable Projects"
+msgstr "Proyectos analizables"
+
+#. module: i2t_project_task_report
+#: model_terms:ir.ui.view,arch_db:i2t_project_task_report.project_task_views_search
+#: model_terms:ir.ui.view,arch_db:i2t_project_task_report.view_task_project_user_search
+msgid "Finished Task"
+msgstr "Tareas finalizadas"
+
+#. module: i2t_project_task_report
+#: model:ir.model,name:i2t_project_task_report.model_project_project
+msgid "Project"
+msgstr "Proyecto"
