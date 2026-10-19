@@ -34,8 +34,10 @@ Añade soporte para unidad de medida secundaria en quants de stock (stock.quant)
 * **🗺️ CalculadorRutas:** Módulo de distribución logística para modelar rutas óptimas mediante la definición de nodos, enlaces operativos y un motor de cálculo dedicado.
 * **🛒 e-commerce_sale_order_cart:** Extensión que sobrescribe plantillas QWeb y optimiza flujos de datos en el frontend para mejorar la experiencia en el carrito de compras.
 * **🛍️ e-commerce_sale_order_hide_category_shop:** Ajuste de interfaz con estilos SCSS heredados que oculta la barra lateral vertical de categorías para ofrecer una navegación más limpia y minimalista.
-* **📞 website_contacts_product:** Integración funcional que vincula consultas web de productos con el CRM de Odoo, transformando envíos de formularios en iniciativas comerciales.
+* **🤖 snk_vendor_bill_ocr (Digitalización de Facturas Azure OCR):** Automatiza de forma asíncrona la creación de facturas de proveedor en borrador extrayendo líneas, impuestos e IBAN mediante Azure AI Document Intelligence.
+* **📞 website_contacts_product:** Integración functional que vincula consultas web de productos con el CRM de Odoo, transformando envíos de formularios en iniciativas comerciales.
 * **📄 website_sale_product_description_extended:** Expansión que inyecta capacidades de texto rico y multidimensional para mostrar fichas y descripciones técnicas avanzadas en el portal web.
+
 
 
 ## Odoo-17
