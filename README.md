@@ -36,7 +36,14 @@ food_allergens_product:
 Gestión de alérgenos alimentarios asociados a productos para control e información obligatoria.
 
 ## Odoo-18
+Módulos en la raíz de la rama: `pos_restaurant_api`.
+
+**pos_restaurant_api (API de Punto de Venta para Restaurantes):** Conexión omnicanal de aplicaciones móviles (React Native) y plataformas de delivery (Glovo, Just Eat) con el flujo de cocina y ventas nativo de Odoo.
+
 
 ## Odoo-19
+## 🚚 TMS (Transport Management System)
+Módulo integral diseñado para optimizar los servicios de transporte y logística en Odoo 19, automatizando el control de rutas, la asignación de viajes detallados a conductores y la supervisión del mantenimiento vehicular.
+
  main
 
