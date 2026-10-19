@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tms_route_user,tms.route user,model_tms_route,tms.group_tms_user,1,1,1,0
+access_tms_request_user,tms.request user,model_tms_request,tms.group_tms_user,1,1,1,0
+access_tms_trip_user,tms.trip user,model_tms_trip,tms.group_tms_user,1,1,1,0
+access_tms_mileage_user,tms.mileage user,model_tms_mileage_sheet,tms.group_tms_user,1,1,1,0
+access_tms_tire_user,tms.tire user,model_tms_tire_change,tms.group_tms_user,1,1,1,0
+
+access_tms_route_mgr,tms.route mgr,model_tms_route,tms.group_tms_manager,1,1,1,1
+access_tms_request_mgr,tms.request mgr,model_tms_request,tms.group_tms_manager,1,1,1,1
+access_tms_trip_mgr,tms.trip mgr,model_tms_trip,tms.group_tms_manager,1,1,1,1
+access_tms_mileage_mgr,tms.mileage mgr,model_tms_mileage_sheet,tms.group_tms_manager,1,1,1,1
+access_tms_tire_mgr,tms.tire mgr,model_tms_tire_change,tms.group_tms_manager,1,1,1,1

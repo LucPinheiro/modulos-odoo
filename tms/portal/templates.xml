@@ -1,0 +1,39 @@
+<odoo>
+  <template id="portal_my_trips" name="My TMS Trips" page="True">
+    <t t-call="portal.portal_layout">
+      <div class="container mt-4">
+        <h2>Mis Viajes</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Viaje</th>
+              <th>Ruta</th>
+              <th>Cliente</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <t t-foreach="trips" t-as="tr">
+              <tr>
+                <td><t t-esc="tr.name"/></td>
+                <td><t t-esc="tr.route_id.name"/></td>
+                <td><t t-esc="tr.partner_id.name"/></td>
+                <td><t t-esc="tr.state"/></td>
+                <td>
+                  <a t-if="tr.state == 'assigned'"
+                     t-att-href="'/my/tms/trip/%s/start' % tr.id"
+                     class="btn btn-sm btn-primary">Iniciar</a>
+
+                  <a t-if="tr.state == 'in_transit'"
+                     t-att-href="'/my/tms/trip/%s/deliver' % tr.id"
+                     class="btn btn-sm btn-success">Entregar</a>
+                </td>
+              </tr>
+            </t>
+          </tbody>
+        </table>
+      </div>
+    </t>
+  </template>
+</odoo>

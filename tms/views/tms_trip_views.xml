@@ -1,0 +1,101 @@
+<odoo>
+  <data>
+    <record id="tms_trip_view_tree" model="ir.ui.view">
+      <field name="name">tms.trip.tree</field>
+      <field name="model">tms.trip</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="partner_id"/>
+          <field name="route_id"/>
+          <field name="vehicle_id"/>
+          <field name="driver_id"/>
+          <field name="state"/>
+          <field name="planned_start"/>
+          <field name="planned_end"/>
+          <field name="total"/>
+          <field name="invoice_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="tms_trip_view_form" model="ir.ui.view">
+      <field name="name">tms.trip.form</field>
+      <field name="model">tms.trip</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="action_assign" type="object" string="Asignar" class="btn-primary"
+                    invisible="state != 'draft'"/>
+            <button name="action_start" type="object" string="Iniciar" class="btn-primary"
+                    invisible="state != 'assigned'"/>
+            <button name="action_deliver" type="object" string="Entregar" class="btn-success"
+                    invisible="state != 'in_transit'"/>
+            <button name="action_close" type="object" string="Cerrar"
+                    invisible="state != 'delivered'"/>
+            <button name="action_cancel" type="object" string="Cancelar" class="btn-secondary"
+                    invisible="state in ('cancelled','closed')"/>
+
+            <button name="action_create_invoice" type="object" string="Crear factura" class="btn-primary"
+                    invisible="invoice_id != False"/>
+
+            <field name="state" widget="statusbar"
+                   statusbar_visible="draft,assigned,in_transit,delivered,closed"/>
+          </header>
+
+          <sheet>
+            <group>
+              <field name="name" readonly="1"/>
+              <field name="request_id" readonly="1"/>
+              <field name="partner_id"/>
+              <field name="route_id"/>
+            </group>
+
+            <group>
+              <field name="vehicle_id"/>
+              <field name="driver_id"/>
+            </group>
+
+            <group>
+              <field name="planned_start"/>
+              <field name="planned_end"/>
+              <field name="actual_start" readonly="1"/>
+              <field name="actual_end" readonly="1"/>
+            </group>
+
+            <group>
+              <field name="currency_id"/>
+              <field name="price"/>
+              <field name="extra_costs"/>
+              <field name="total" readonly="1"/>
+              <field name="invoice_id" readonly="1"/>
+            </group>
+
+            <notebook>
+              <page string="Kilometraje">
+                <field name="mileage_sheet_ids">
+                  <tree editable="bottom">
+                    <field name="date"/>
+                    <field name="km_start"/>
+                    <field name="km_end"/>
+                    <field name="km_total" readonly="1"/>
+                    <field name="fuel_cost"/>
+                    <field name="other_cost"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+
+          <chatter/>
+        </form>
+      </field>
+    </record>
+
+    <record id="tms_trip_action" model="ir.actions.act_window">
+      <field name="name">Viajes</field>
+      <field name="res_model">tms.trip</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

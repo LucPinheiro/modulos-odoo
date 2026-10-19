@@ -1,0 +1,19 @@
+<odoo>
+  <data>
+    <record id="sale_order_view_form_inherit_tms" model="ir.ui.view">
+      <field name="name">sale.order.form.inherit.tms</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//sheet//group" position="after">
+          <group string="TMS">
+            <field name="tms_route_id"/>
+            <field name="tms_request_id" readonly="1"/>
+            <button name="action_create_tms_request" type="object" string="Crear Solicitud TMS"
+                    class="btn-primary" invisible="tms_request_id != False or tms_route_id == False"/>
+          </group>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,55 @@
+<odoo>
+  <data>
+    <record id="tms_route_view_tree" model="ir.ui.view">
+      <field name="name">tms.route.tree</field>
+      <field name="model">tms.route</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="origin"/>
+          <field name="destination"/>
+          <field name="distance_km"/>
+          <field name="duration_hours"/>
+          <field name="toll_cost"/>
+          <field name="suggested_price"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="tms_route_view_form" model="ir.ui.view">
+      <field name="name">tms.route.form</field>
+      <field name="model">tms.route</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="active"/>
+            </group>
+            <group>
+              <field name="origin"/>
+              <field name="destination"/>
+            </group>
+            <group>
+              <field name="distance_km"/>
+              <field name="duration_hours"/>
+            </group>
+            <group>
+              <field name="currency_id"/>
+              <field name="toll_cost"/>
+              <field name="suggested_price"/>
+            </group>
+          </sheet>
+          <chatter/>
+        </form>
+      </field>
+    </record>
+
+    <record id="tms_route_action" model="ir.actions.act_window">
+      <field name="name">Rutas</field>
+      <field name="res_model">tms.route</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

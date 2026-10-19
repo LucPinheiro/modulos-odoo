@@ -1,0 +1,17 @@
+<odoo>
+  <data noupdate="1">
+    <record id="seq_tms_request" model="ir.sequence">
+      <field name="name">TMS Request</field>
+      <field name="code">tms.request</field>
+      <field name="prefix">TRQ/</field>
+      <field name="padding">5</field>
+    </record>
+
+    <record id="seq_tms_trip" model="ir.sequence">
+      <field name="name">TMS Trip</field>
+      <field name="code">tms.trip</field>
+      <field name="prefix">TRP/</field>
+      <field name="padding">5</field>
+    </record>
+  </data>
+</odoo>

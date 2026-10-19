@@ -1,0 +1,49 @@
+<odoo>
+  <data>
+    <record id="tms_tire_view_tree" model="ir.ui.view">
+      <field name="name">tms.tire.change.tree</field>
+      <field name="model">tms.tire.change</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="date"/>
+          <field name="vehicle_id"/>
+          <field name="tire_position"/>
+          <field name="brand"/>
+          <field name="reference"/>
+          <field name="km_at_change"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="tms_tire_view_form" model="ir.ui.view">
+      <field name="name">tms.tire.change.form</field>
+      <field name="model">tms.tire.change</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="date"/>
+              <field name="vehicle_id"/>
+            </group>
+            <group>
+              <field name="tire_position"/>
+              <field name="brand"/>
+              <field name="reference"/>
+              <field name="km_at_change"/>
+            </group>
+            <group>
+              <field name="notes"/>
+            </group>
+          </sheet>
+          <chatter/>
+        </form>
+      </field>
+    </record>
+
+    <record id="tms_tire_action" model="ir.actions.act_window">
+      <field name="name">Neumáticos</field>
+      <field name="res_model">tms.tire.change</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+  <data>
+    <record id="group_tms_user" model="res.groups">
+      <field name="name">TMS User</field>
+      <field name="category_id" ref="base.module_category_operations"/>
+    </record>
+
+    <record id="group_tms_manager" model="res.groups">
+      <field name="name">TMS Manager</field>
+      <field name="category_id" ref="base.module_category_operations"/>
+      <field name="implied_ids" eval="[(4, ref('tms.group_tms_user'))]"/>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,75 @@
+<odoo>
+  <data>
+    <record id="tms_request_view_tree" model="ir.ui.view">
+      <field name="name">tms.request.tree</field>
+      <field name="model">tms.request</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="partner_id"/>
+          <field name="route_id"/>
+          <field name="state"/>
+          <field name="pickup_date"/>
+          <field name="delivery_date"/>
+          <field name="total"/>
+          <field name="trip_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="tms_request_view_form" model="ir.ui.view">
+      <field name="name">tms.request.form</field>
+      <field name="model">tms.request</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="action_confirm" type="object" string="Confirmar" class="btn-primary"
+                    invisible="state != 'draft'"/>
+            <button name="action_plan" type="object" string="Planificar"
+                    invisible="state not in ('confirmed','draft')"/>
+            <button name="action_create_trip" type="object" string="Crear viaje" class="btn-primary"
+                    invisible="trip_id != False"/>
+            <button name="action_cancel" type="object" string="Cancelar" class="btn-secondary"
+                    invisible="state == 'cancelled'"/>
+            <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,planned,cancelled"/>
+          </header>
+
+          <sheet>
+            <group>
+              <field name="name" readonly="1"/>
+              <field name="partner_id"/>
+              <field name="route_id"/>
+              <field name="sale_order_id" readonly="1"/>
+              <field name="trip_id" readonly="1"/>
+            </group>
+
+            <group>
+              <field name="pickup_date"/>
+              <field name="delivery_date"/>
+            </group>
+
+            <group string="Carga">
+              <field name="cargo_description"/>
+              <field name="weight_kg"/>
+              <field name="volume_m3"/>
+            </group>
+
+            <group string="Costos">
+              <field name="currency_id"/>
+              <field name="price"/>
+              <field name="extra_costs"/>
+              <field name="total" readonly="1"/>
+            </group>
+          </sheet>
+          <chatter/>
+        </form>
+      </field>
+    </record>
+
+    <record id="tms_request_action" model="ir.actions.act_window">
+      <field name="name">Solicitudes</field>
+      <field name="res_model">tms.request</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>
