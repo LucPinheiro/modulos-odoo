@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* purchase_order_partner_ref_mandatory
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-30 09:44+0000\n"
+"PO-Revision-Date: 2022-11-30 10:55+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#. module: purchase_order_partner_ref_mandatory
+#: model_terms:ir.ui.view,arch_db:purchase_order_partner_ref_mandatory.purchase_order_search
+msgid "Partner ref"
+msgstr "Referencia de proveedor"
+
+#. module: purchase_order_partner_ref_mandatory
+#: model:ir.model,name:purchase_order_partner_ref_mandatory.model_purchase_order
+msgid "Purchase Order"
+msgstr "Orden de Compra"
+
+#. module: purchase_order_partner_ref_mandatory
+#: model:ir.model.fields,help:purchase_order_partner_ref_mandatory.field_purchase_order__partner_ref
+msgid ""
+"Reference of the sales order or bid sent by the vendor. It's used to do the "
+"matching when you receive the products as this reference is usually written "
+"on the delivery order sent by your vendor."
+msgstr ""
+"Referencia del pedido de venta u oferta enviada por el proveedor. Se "
+"utiliza para hacer la concordancia cuando recibes los productos ya que esta "
+"referencia suele estar escrita en el albarán de entrega enviado por tu "
+"proveedor."
+
+#. module: purchase_order_partner_ref_mandatory
+#: model:ir.model.fields,field_description:purchase_order_partner_ref_mandatory.field_purchase_order__partner_ref
+msgid "Vendor Reference"
+msgstr "Referencia de proveedor"
