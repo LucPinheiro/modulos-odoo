@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* task_billable_mangement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-27 10:01+0000\n"
+"PO-Revision-Date: 2023-10-27 12:04+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4\n"
+
+#. module: task_billable_mangement
+#: model:ir.model,name:task_billable_mangement.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Línea Analítica"
+
+#. module: task_billable_mangement
+#: model:ir.model.fields.selection,name:task_billable_mangement.selection__project_task__task_status__backlog
+msgid "Backlog"
+msgstr "Reservada"
+
+#. module: task_billable_mangement
+#: code:addons/task_billable_mangement/models/project_task.py:0
+#, python-format
+msgid "Billable tasks cannot be created. Contact your manager."
+msgstr ""
+"No se pueden crear tareas facturables. Póngase en contacto con su "
+"gerente."
+
+#. module: task_billable_mangement
+#: model:ir.model.fields.selection,name:task_billable_mangement.selection__project_task__task_status__doing
+msgid "Doing"
+msgstr "En proceso"
+
+#. module: task_billable_mangement
+#: model:ir.model.fields.selection,name:task_billable_mangement.selection__project_task__task_status__done
+msgid "Done"
+msgstr "Completada"
+
+#. module: task_billable_mangement
+#: model:ir.model.fields,field_description:task_billable_mangement.field_project_task__allow_billable
+msgid "Facturable"
+msgstr "Facturable"
+
+#. module: task_billable_mangement
+#: code:addons/task_billable_mangement/models/account_analytic_line.py:0
+#, python-format
+msgid ""
+"Hours can only be allocated to tasks whose status is 'Doing' if they are "
+"billable"
+msgstr ""
+"Las horas solo se pueden asignar a tareas cuyo estado sea \"En proceso\" "
+"si son facturables"
+
+#. module: task_billable_mangement
+#: model:ir.model.fields,help:task_billable_mangement.field_project_task__allow_billable
+msgid "Invoice your time and material from tasks."
+msgstr "Factura tu tiempo y materiales desde las tareas."
+
+#. module: task_billable_mangement
+#: code:addons/task_billable_mangement/models/project_task.py:0
+#, python-format
+msgid "Only administrators can change from done or reject status"
+msgstr ""
+"Solo los administradores pueden cambiar del estado completado o rechazado"
+
+#. module: task_billable_mangement
+#: model:ir.model.fields.selection,name:task_billable_mangement.selection__project_task__task_status__reject
+msgid "Reject"
+msgstr "Rechazada"
+
+#. module: task_billable_mangement
+#: model:ir.model,name:task_billable_mangement.model_project_task
+msgid "Task"
+msgstr "Tarea"
+
+#. module: task_billable_mangement
+#: model:ir.model.fields,field_description:task_billable_mangement.field_account_analytic_line__task_status
+#: model:ir.model.fields,field_description:task_billable_mangement.field_project_task__task_status
+msgid "Task Status"
+msgstr "Estado de la tarea"
+
+#. module: task_billable_mangement
+#: model:ir.model.fields.selection,name:task_billable_mangement.selection__project_task__task_status__to_do
+msgid "To Do"
+msgstr "Para hacer"
