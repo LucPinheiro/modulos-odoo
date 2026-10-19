@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_order_kpis_tree" model="ir.ui.view"> 
+        <field name="name">purchase.order.tree (Purchase Order Partner Ref Mandatory)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_ref" /> 
+            </xpath>  
+        </field>
+    </record>
+
+    <record id="purchase_order_form" model="ir.ui.view"> 
+        <field name="name">purchase.order.form (Purchase Order Partner Ref Mandatory)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ref']" position="attributes">
+                <attribute name="required">True</attribute>
+            </xpath>  
+        </field>
+    </record>
+
+    <record id="view_purchase_order_kanban" model="ir.ui.view"> 
+        <field name="name">purchase.order.kanban (Purchase Order Partner Ref Mandatory)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="partner_ref"/>
+            </xpath>  
+            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="before">
+                <div name="div_partner_ref">
+                    <span name="span_partner_ref"><t t-esc="record.partner_ref.value"/></span>
+                </div>
+            </xpath>  
+        </field>
+    </record>
+
+    <record id="purchase_order_search" model="ir.ui.view">
+        <field name="name">purchase.order.search (Purchase Order Partner Ref Mandatory)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter" /> 
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after"> 
+                <field name="partner_ref" filter_domain="[('partner_ref', 'ilike', self)]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
