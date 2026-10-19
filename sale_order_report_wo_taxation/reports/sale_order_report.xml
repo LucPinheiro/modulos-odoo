@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template
+        id="report_saleorder_document_without_taxation"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//th[@name='th_taxes']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_taxes']" position="attributes">
+            <attribute name="class">d-none</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-call='account.document_tax_totals']"
+            position="attributes"
+        >
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath
+            expr="//t[@t-call='account.document_tax_totals']"
+            position="after"
+        >
+            <tr 
+                class="border-black o_total"
+                style="font-size: 1.5em"
+            >
+                <td><strong>Total</strong></td>
+                <td class="text-right">
+                    <span t-field="doc.amount_untaxed" />
+                </td>
+            </tr>
+            <tr class="border-black">
+                <td
+                    class="text-right"
+                    colspan="2"
+                    style="font-size: 0.8em"
+                >
+                    No taxes included
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>
