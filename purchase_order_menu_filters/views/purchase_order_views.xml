@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+        <field name="context">{
+            'quotation_only': True,
+            'search_default_draft': 1,
+        }</field>
+    </record>
+
+    <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+        <field name="context">{"search_default_nothing_to_bill": 1,"search_default_not_invoiced": 1 } </field>
+    </record>
+
+    <record id="purchase_orders_search_inherit" model="ir.ui.view">
+        <field name="name">purchase.order.view.search (Purchase Order Menu Filters)</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='not_invoiced']" position="after"> 
+               <filter name="nothing_to_bill" string="Nothing to Bill" domain="[('invoice_status', '=', 'no')]"/>
+            </xpath>
+        </field>
+    </record> 
+
+</odoo>
