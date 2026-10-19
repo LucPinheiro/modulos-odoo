@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    
+    <template id="snippets" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_feature']">
+            
+        </xpath>
+    </template>
+
+    <record id="website.s_embed_code_000_scss" model="ir.asset">
+    <field name="name">Embed Code 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">website/static/src/snippets/s_tabla_edit/000.scss</field>
+    </record>
+
+    
+
+</odoo>
