@@ -23,7 +23,20 @@ Añade soporte para unidad de medida secundaria en quants de stock (stock.quant)
 
 ## Odoo-15
 
+* **📦 web_footer_gdpr_report (Cláusulas GDPR en Informes):** Agrega de forma automática las cláusulas legales de protección de datos (GDPR) en los pies de página de los informes de facturas y pedidos de venta.
+* **📊 sale_order_invoice_qty_number (Contador de Facturas en Ventas):** Cuenta la cantidad de facturas generadas por cada pedido de venta e introduce nuevos filtros avanzados de búsqueda en la interfaz.
+* **⏳ hr_attendance_menu_filter (Filtros de Tiempo en Asistencias):** Incorpora un filtro predeterminado por semanas y filtros dinámicos gráficos para analizar las entradas y salidas de los empleados.
+* **✏️ hr_attendance_user_edit_check_in_out (Edición Manual de Asistencias):** Concede permisos a los usuarios de control de presencia manual para modificar y corregir sus propios registros de asistencia.
+
+
 ## Odoo-16
+
+* **🗺️ CalculadorRutas:** Módulo de distribución logística para modelar rutas óptimas mediante la definición de nodos, enlaces operativos y un motor de cálculo dedicado.
+* **🛒 e-commerce_sale_order_cart:** Extensión que sobrescribe plantillas QWeb y optimiza flujos de datos en el frontend para mejorar la experiencia en el carrito de compras.
+* **🛍️ e-commerce_sale_order_hide_category_shop:** Ajuste de interfaz con estilos SCSS heredados que oculta la barra lateral vertical de categorías para ofrecer una navegación más limpia y minimalista.
+* **📞 website_contacts_product:** Integración funcional que vincula consultas web de productos con el CRM de Odoo, transformando envíos de formularios en iniciativas comerciales.
+* **📄 website_sale_product_description_extended:** Expansión que inyecta capacidades de texto rico y multidimensional para mostrar fichas y descripciones técnicas avanzadas en el portal web.
+
 
 ## Odoo-17
 
