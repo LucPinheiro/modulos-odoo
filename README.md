@@ -21,8 +21,6 @@ Módulos en la raíz de la rama: `fcd`, `stock_move_line_partner_tree`, `stock_s
 
 ## Odoo-15
 
-# 🧩 Colección de Addons para Odoo 15
-
 ### 💼 Facturación y Finanzas
 * **💰 account_invoice_user_authorization_payment**: Gestiona y restringe los flujos de autorización para pagos de facturas. Asegura que solo los usuarios permitidos validen transacciones monetarias.
 
