@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_template_description_extended_form_view" model="ir.ui.view">
+        <field name="name">product.template.form (in Website Sale Product Description Extended)</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='shop']" position="after">
+                <notebook>
+                    <page string="Description Product" name="description_product">
+                        <group name="description_product">
+                            <field
+                                name="description_product"
+                                nolabel="1"6
+                                widget="html"
+                                placeholder="This description product will be shown on e-commerce frontend" />
+                        </group>
+                    </page>
+                    <page string="Shipping and Returns" name="public_shipment"> 
+                        <group name="public_shipment">
+                            <field
+                                name="public_shipment"
+                                nolabel="1"
+                                widget="html"
+                                placeholder="This Shipping will be shown on e-commerce frontend" />
+                        </group> 
+                    </page>
+                    <page string="Payment Methods">
+                        <group name="payment_methods" >
+                            <field
+                                name="payment_methods"
+                                nolabel="1"
+                                widget="html"
+                                placeholder="This payment methods will be shown on e-commerce frontend" />
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>
