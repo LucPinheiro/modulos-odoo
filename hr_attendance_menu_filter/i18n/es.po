@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_attendance_menu_filter
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-30 12:18+0000\n"
+"PO-Revision-Date: 2023-01-30 13:23+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#. module: hr_attendance_menu_filter
+#: model_terms:ir.ui.view,arch_db:hr_attendance_menu_filter.hr_attendance_menu_filter_search_inherit
+msgid "Last Week"
+msgstr "Semana Pasada"
+
+#. module: hr_attendance_menu_filter
+#: model_terms:ir.ui.view,arch_db:hr_attendance_menu_filter.hr_attendance_menu_filter_search_inherit
+msgid "Today"
+msgstr "Hoy"
+
+#. module: hr_attendance_menu_filter
+#: model_terms:ir.ui.view,arch_db:hr_attendance_menu_filter.hr_attendance_menu_filter_search_inherit
+msgid "Week"
+msgstr "Esta Semana"
+
+#. module: hr_attendance_menu_filter
+#: model_terms:ir.ui.view,arch_db:hr_attendance_menu_filter.hr_attendance_menu_filter_search_inherit
+msgid "Yesterday"
+msgstr "Ayer"
