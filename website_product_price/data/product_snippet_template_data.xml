@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <template id="template_website_product_price" 
+            inherit_id="website_sale.dynamic_filter_template_product_product_view_detail" >
+            <!-- <xpath expr="//div[hasclass('d-flex')]" position="inside"> -->
+            <xpath expr="//a[hasclass('btn')]" position="after">
+                   <a class="btn btn-primary" t-att-href="record.website_url">
+                        Ver detalle
+                    </a>
+            </xpath>
+        </template>
+    
+    </data>
+    
+
+</odoo>
