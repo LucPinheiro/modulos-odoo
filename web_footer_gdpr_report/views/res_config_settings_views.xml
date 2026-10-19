@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="footer_gdpr_order_config_settings_view" model="ir.ui.view">
+            <field name="name">res.config.settings.form (Web Footer GDPR Order)</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='connectors_setting_container']" position="after">
+                    <div id="gdpr_footer_order_container">
+                        <h2 class="mt32">GDPR</h2>
+                        <div class="row mt16 o_settings_container" name="footer_gdpr_container">
+                            <div class=" o_setting_box" id="down_payments">
+                                <div class="o_setting_right_pane"> 
+                                    <label for="add_gdpr_order"/>
+                                    <a href="https://www.gdpr.eu/tag/gdpr/" title="Documentation" class="o_doc_link" target="_blank"></a>
+                                     <div class="text-muted">
+                                        Add GDPR in order footer
+                                    </div>
+                                        <field name="add_gdpr_order" placeholder="GDPR Order..." />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="footer_gdpr_invoice_config_settings_view" model="ir.ui.view">
+            <field name="name">res.config.settings.form (Web Footer GDPR Invoice)</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='analytic']" position="after">
+                    <div id="gdpr_footer_invoice_container">
+                        <h2 class="mt32">GDPR</h2>
+                        <div class="row mt16 o_settings_container" name="footer_gdpr_container">
+                            <div class=" o_setting_box" id="down_payments">
+                                <div class="o_setting_right_pane"> 
+                                    <label for="add_gdpr_invoice"/>
+                                    <a href="https://www.gdpr.eu/tag/gdpr/" title="Documentation" class="o_doc_link" target="_blank"></a>
+                                    <div class="text-muted">
+                                        Add GDPR in invoice footer
+                                    </div>
+                                        <field name="add_gdpr_invoice" placeholder="GDPR Invoice..." />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+</odoo>

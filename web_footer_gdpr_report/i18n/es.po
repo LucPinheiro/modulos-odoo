@@ -1,0 +1,100 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* web_footer_gdpr_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-29 12:02+0100\n"
+"PO-Revision-Date: 2022-12-29 12:07+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#. module: web_footer_gdpr_report
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.footer_gdpr_invoice_config_settings_view
+msgid "Add GDPR in invoice footer"
+msgstr "Añadir Cláusulas RGPD en el pie de página de factura"
+
+#. module: web_footer_gdpr_report
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.footer_gdpr_order_config_settings_view
+msgid "Add GDPR in order footer"
+msgstr "Añadir Cláusulas RGPD en el pie de página de pedido"
+
+#. module: web_footer_gdpr_report
+#: model:ir.model.fields,field_description:web_footer_gdpr_report.field_res_company__add_gdpr_invoice
+msgid "Add Gdpr Invoice"
+msgstr "Añadir Cláusulas RGPD en factura"
+
+#. module: web_footer_gdpr_report
+#: model:ir.model.fields,field_description:web_footer_gdpr_report.field_res_company__add_gdpr_order
+msgid "Add Gdpr Order"
+msgstr "Añadir Cláusulas RGPD en Pedido"
+
+#. module: web_footer_gdpr_report
+#: model:ir.model,name:web_footer_gdpr_report.model_res_company
+msgid "Companies"
+msgstr "Compania"
+
+#. module: web_footer_gdpr_report
+#: model:ir.model,name:web_footer_gdpr_report.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes"
+
+#. module: web_footer_gdpr_report
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.footer_gdpr_invoice_config_settings_view
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.footer_gdpr_order_config_settings_view
+msgid "Documentation"
+msgstr "Documentación"
+
+#. module: web_footer_gdpr_report
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.footer_gdpr_invoice_config_settings_view
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.footer_gdpr_order_config_settings_view
+msgid "GDPR"
+msgstr "Cláusulas RGPD"
+
+#. module: web_footer_gdpr_report
+#: model:ir.model.fields,field_description:web_footer_gdpr_report.field_res_config_settings__add_gdpr_invoice
+msgid "GDPR Invoice"
+msgstr "Cláusulas RGPD en Facturas"
+
+#. module: web_footer_gdpr_report
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.footer_gdpr_invoice_config_settings_view
+msgid "GDPR Invoice..."
+msgstr "Cláusulas RGPD en Facturas..."
+
+#. module: web_footer_gdpr_report
+#: model:ir.model.fields,field_description:web_footer_gdpr_report.field_res_config_settings__add_gdpr_order
+msgid "GDPR Order"
+msgstr "Cláusulas RGPD en Pedido"
+
+#. module: web_footer_gdpr_report
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.footer_gdpr_order_config_settings_view
+msgid "GDPR Order..."
+msgstr "Cláusulas RGPD en Pedido..."
+
+#. module: web_footer_gdpr_report
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.report_invoice_document
+msgid "add_gdpr_invoice"
+msgstr ""
+
+#. module: web_footer_gdpr_report
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.report_saleorder_document
+msgid "add_gdpr_order"
+msgstr ""
+
+#. module: web_footer_gdpr_report
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.report_invoice_document
+msgid "invoice"
+msgstr "facturas"
+
+#. module: web_footer_gdpr_report
+#: model_terms:ir.ui.view,arch_db:web_footer_gdpr_report.report_saleorder_document
+msgid "order"
+msgstr "pedidos"

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//t[@t-set='doc']" position="after">
+        <t t-set="o_type">order</t>
+        <t t-set="o_gdpr">add_gdpr_order</t>
+        </xpath>
+    </template>
+
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//t[@t-set='o']" position="after">
+            <t t-set="o_type">invoice</t>
+            <t t-set="i_gdpr">add_gdpr_invoice</t>
+        </xpath>
+    </template>
+
+    <template id="web_footer_gdpr_document_inherit" inherit_id="web.external_layout_standard">
+         <xpath expr="//ul" position="inside"> 
+         	<div t-if="o_type" class="footer_gdpr">  
+                <t t-if="o_type=='order'">
+                    <span  t-if="o_gdpr=='add_gdpr_order'" t-field="company.add_gdpr_order"/>
+                </t>
+                <t t-if="o_type=='invoice'">
+                    <span  t-if="i_gdpr=='add_gdpr_invoice'" t-field="company.add_gdpr_invoice"/>
+				</t>
+			</div>
+        </xpath>
+        <xpath expr="//div[hasclass('text-muted')]" position="attributes">
+			<attribute name="style">margin-top: -18px !important;</attribute>
+		</xpath>
+        <xpath expr="//div[hasclass('footer_gdpr')]" position="attributes">
+			<attribute name="style">font-size: 0.55em; margin-top: -15px; text-align: center;!important;</attribute>
+		</xpath>
+    </template> 
+
+</odoo>  
+
