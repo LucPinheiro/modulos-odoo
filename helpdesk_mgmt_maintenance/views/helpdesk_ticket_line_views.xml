@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <record id="help_main_helpdesk_ticket_line_tree" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.line.view.tree (Helpdesk_mgmt Maintenance)</field>
+        <field name="model">helpdesk.ticket.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record> -->
+
+    <record id="help_main_helpdesk_ticket_line_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.line.view.form (Helpdesk_mgmt Maintenance)</field>
+        <field name="model">helpdesk.ticket.line</field>
+        <field name="arch" type="xml">
+               <form>
+                    <sheet>
+                        <group>
+                            <field name="name" invisible="1" />
+                        </group>
+                        <notebook>
+                            <page string="Sumary" >
+                               <group>
+                                    
+                                    <field name="ticket_ids" 
+                                        nolabel="1"
+                                        widget="x2many_2d_matrix"
+                                        field_x_axis="value_x"
+                                        field_y_axis="value_y"
+                                        field_value="tickets_hours"
+                                        x_axis_clickable="0"
+                                        y_axis_clickable="1" >
+                                        
+                                            <tree limit="1000000">
+                                                <field name="value_x" />
+                                                <field name="value_y" />
+                                                <field name="total_time" widget="float_time" />
+                                               
+
+                                    
+                                            <!--  Don't remove last fields, they are technically needed for the widget to work properly.-->
+                                        </tree>
+                                    </field> 
+                                </group>
+                            </page>
+                                                
+                            <page string="Details" >
+                                <group  name="name" string="Line">
+
+                                    <field name="ticket_ids" nolabel="1" >
+                                        <tree editable="bottom" >
+                                            <field name="name" string="Tickets"/>
+                                            <field name="date_start" string='Begin hour' />
+                                            <field name="date_end"  string='End hour' />
+                                            <field name="total_time" string="Duraction"  widget="float_time" sum="Hours"/>
+                                        </tree>
+                                    </field> 
+                                </group>
+                            </page> 
+                        </notebook>
+                  </sheet>
+            </form>
+        </field>
+    </record> 
+
+</odoo>

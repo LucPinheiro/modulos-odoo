@@ -1,0 +1,20 @@
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- This group is only allowed to deal with equipment registration and maintenance -->
+    <record id="group_traceability_manager" model="res.groups">
+        <field name="name">Traceability Manager</field>
+        <field name="category_id" ref="base.module_category_manufacturing_maintenance"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">The user will be able to manage equipments.</field>
+    </record>
+
+
+    <record id="base.user_admin" model="res.users">
+        <field name="groups_id" eval="[(4, ref('group_traceability_manager'))]"/>
+    </record>
+
+
+
+</odoo>

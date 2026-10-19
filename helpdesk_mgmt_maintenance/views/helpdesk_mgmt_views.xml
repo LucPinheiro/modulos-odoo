@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Default filter  Project-->
+        <!-- <record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
+            <field name="context">{"search_default_this_week": 1} </field>
+        </record> -->
+
+    <!-- Project button action  -->
+    <record id="helpdesk_tickets_action_from_project" model="ir.actions.act_window">
+    <field name="name">Project Project</field> 
+    <field name="res_model">project.project</field>
+    <field name="binding_model_id" ref="project.model_project_project"/> 
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="domain">[('ticket_ids', '=', active_id)]</field>
+ 
+    </record> 
+
+    <!-- Tasks Project button action  -->
+    <record id="helpdesk_tickets_action_from_project_task" model="ir.actions.act_window">
+    <field name="name">Project Tack</field> 
+    <field name="res_model">project.task</field>
+    <field name="binding_model_id" ref="project.model_project_task"/> 
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="domain">[('ticket_ids', '=', active_id)]</field>
+    </record>
+
+    <!-- Default filter  Equipament-->
+        <!-- <record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
+            <field name="context">{"search_default_this_week": 1} </field>
+        </record> -->
+
+    <!-- Equipment button action -->
+    <record id="helpdesk_tickets_action_from_equipment" model="ir.actions.act_window">
+    <field name="name">Maintenance Equipment</field>
+    <field name="res_model">maintenance.equipment</field>
+    <field name="binding_model_id" ref="maintenance.model_maintenance_equipment"/> 
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="domain">[('ticket_ids', '=', active_id)]</field>
+    </record> 
+
+    <!-- Helpdesk Ticket tree view -->
+    <record id="help_main_helpdesk_ticket_tree" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.tree (Helpdesk Maintenance)</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='last_stage_update']" position="after">
+                <field name="equipment_ids_count" string="Nº equip" />
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- Helpdesk Ticket form view -->
+    <record id="help_main_helpdesk_ticket_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form (Helpdesk Maintenance)</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Helpdesk Ticket XAPTH HEADER BUTTON -->
+            <!-- context="{'search_default_equipment_ids': active_id, 'default_equipment_ids': active_id}" -->
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <!-- Project count button -->
+                <button class="oe_stat_button" name="%(helpdesk_mgmt_projects_action)d"
+                    type="action" icon="fa-puzzle-piece"
+                    attrs="{'invisible': [('project_id', '=', False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="project_id" invisible="1"/>
+                            <field name="project_id_count" widget="statinfo" nolabel="1" class="mr4" />
+                        </span>
+                        <span class="o_stat_text">Project</span>
+                    </div>
+                </button>
+                <!-- Task count button -->
+                <button class="oe_stat_button" name="%(helpdesk_tickets_action_from_project_task)d"
+                    type="action" icon="fa-tasks"
+                    attrs="{'invisible': [('task_id', '=', False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="task_id" invisible="1"/>
+                            <field name="task_id_count" widget="statinfo" nolabel="1" class="mr4" />
+                        </span>
+                        <span class="o_stat_text">Task</span>
+                    </div>
+                </button>
+                <!-- Equipment count Button -->
+                <button class="oe_stat_button" name="%(helpdesk_tickets_action_from_equipment)d"
+                    type="action" icon="fa-cubes"
+                    attrs="{'invisible': [('equipment_ids', '=', False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="equipment_ids" invisible="1"/>
+                            <field name="equipment_ids_count" widget="statinfo" nolabel="1" class="mr4" />
+                        </span>
+                        <span class="o_stat_text">Equipment</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" name="%(action_report_ticket_traceabilitty)d"
+                 type="action" icon="fa-arrow-up"
+                  attrs="{'invisible': [('tracking', '=', False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="tracking" invisible="1" />
+                        </span>
+                        <span class="o_stat_text">Traceability</span>
+                    </div>
+                </button>
+            </xpath>
+            <!-- Hide company field view tree -->
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//page//group//field[@name='assigned_date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//page//group//field[@name='assigned_date']" position="after">
+                <field name="initially_date" />
+                <field name="planned_hours" />
+                 <!-- <field name="worked_hours" /> -->
+            </xpath>
+
+            <xpath expr="//page//group//field[@name='closed_date']" position="after">
+                <field name="total_hour" widget="float_time" />
+            </xpath>
+
+            <xpath expr="//notebook//page[@name='other_info']" position="after">
+                <page string="Maintenance">
+                    <group name="name" string="Equipment Line">
+                        <field name="equipment_ids" nolabel="1" >  
+                            <tree>
+                                <field name="name" />
+                                <field name="serial_no" />
+                                <field name="equipment_brand" />
+                                <field name="technician_user_id" />
+                                <field name="category_id" />
+                                <field name="status_id" />
+                                <field name="ticket_ids" widget='many2many_tags' string='Tickets' />
+                            </tree>
+                        </field>
+                    </group>
+                 </page>
+
+                <page string="Timesheet">
+                    <group  name="name" string="Line">
+                        <field name="ticket_ids_line" nolabel="1" >
+                            <tree editable="bottom" >
+                                <field name="date_start" string='Begin hour' />
+                                <field name="date_end"  string='End hour' />
+                                <field name="total_time" string="Duraction"  widget="float_time" sum="Hours"/>
+                            </tree>
+                        </field> 
+                    </group>
+                </page>
+
+                <page string="Traceability">
+                     <group>
+                        <group>
+                            <field name="tracking" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="number" />
+                            <field name="create_date" />
+                            <field name="user_id" />
+                        </group>
+                    </group>
+                </page>
+
+                
+                <page string="Work Information">
+                    <group>
+
+                    </group>
+                </page>
+
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="help_main_helpdesk_ticket_tree_reduced" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.tree (Helpdesk Maintenance)</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="help_main_helpdesk_ticket_tree"/>
+        <field name="mode">primary</field>
+        <field eval="101" name="priority"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+        </field>
+    </record> 
+    
+</odoo>

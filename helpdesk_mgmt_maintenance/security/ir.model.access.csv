@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_maintenance_equipment_report_wizard,acess.maintenance.equipment.report.wizard,model_maintenance_equipment_report_wizard,,1,1,1,1
+access_maintenance_equipment_brand,acess.maintenance.equipment.brand,model_maintenance_equipment_brand,,1,1,1,1
+access_maintenance_equipment_status,acess.maintenance.equipment.status,model_maintenance_equipment_status,,1,1,1,1
+access_helpdesk_ticket_line,acess.helpdesk.ticket.line,model_helpdesk_ticket_line,,1,1,1,1
+access_project_project_line,acess.project.project.line,model_project_project_line,,1,1,1,1

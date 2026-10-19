@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="maintenance_traceability_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                <div class="oe_structure"/>
+                    <div class="page">
+                        <div class="text-center"><h2>Maintenance Request Traceability</h2></div>
+                        <br/>
+                        <br/>
+
+                        <h4 class="mt16">
+                            <span>Request : </span>
+                            <span t-field="doc.name"/>
+                        </h4>
+                        <hr/>
+                    
+                        <table class="table table-sd o_main_table" name="traceability">
+                            <thead>
+                                <tr style="background-color:#828094; border-radius:2px">
+                                    <th>Name</th>
+                                    <th>Team</th>
+                                    <th>Created by</th>
+                                    <th>Created on</th>
+                                    <th>Stage</th>
+                                    <th>Maintenance Type</th>
+                                    <th>Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody class="request_tbody">
+                                <tr>
+                                    <td> <span t-field="doc.name" /> </td>
+                                    <td> <span t-field="doc.maintenance_team_id"/> </td>
+                                    <td> <span t-field="doc.employee_id"/> </td>
+                                    <td> <span t-field="doc.request_date"/> </td>
+                                    <td> <span t-field="doc.stage_id"/> </td>
+                                    <td> <span t-field="doc.maintenance_type"/> </td>
+                                    <td> <span t-field="doc.duration"/> hours</td>
+                                </tr>  
+
+                            </tbody>
+
+                                <t t-if="doc.equipment_ids">
+                                    <table class="table table-sd o_main_table" name="equipments">
+                                        <thead>
+                                            <tr style="background-color:lightgray;">
+                                                <th>Equipment</th>
+                                                <th>Serial number</th>
+                                                <th>Brand</th>
+                                                
+                                                <th>Category</th>
+                                                <th>Technician</th>
+                                                <th>Tickets</th>
+                                                <th>Nº Tickets</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="request_tbody">
+                                            <t t-set="equipment_ids_count" t-value="0"/>
+                                                <t t-foreach="doc.equipment_ids" t-as="line">
+                                                    <t t-set="equipment_ids_count" t-value="equipment_ids_count + 1"/> 
+                                                    <tr>
+                                                        <td style="font-weight: bold"> <span t-field="line.name" /> </td>
+                                                        <td> <span t-field="line.serial_no"/> </td>
+                                                        <td> <span t-field="line.equipment_brand"/> </td>
+                                                        <td> <span t-field="line.category_id"/> </td>
+                                                        <td> <span t-field="line.technician_user_id"/> </td>
+                                                        <td> 
+                                                            <t t-foreach="line.ticket_ids.sorted(key=lambda r: r.number)" t-as="item">
+                                                             <t t-esc="item.number"/>
+                                                            <br/>
+                                                            </t>
+                                                        </td>
+                                                        <td class="text-right"> <span t-field="line.ticket_count"/> </td>
+                                                    </tr>
+                                                </t> 
+                                        </tbody>
+                                    </table>
+                                </t> 
+                        </table>
+                                    
+                    </div>
+
+                </t>
+            </t>
+        </t>
+                
+    </template>
+
+    <record id="action_report_request_traceabilitty" model="ir.actions.report">
+        <field name="name">Maintenance Request Traceability</field>
+        <field name="model">maintenance.request</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">helpdesk_mgmt_maintenance.maintenance_traceability_report_template</field>
+        <field name="report_file">helpdesk_mgmt_maintenance.maintenance_traceability_report_template</field>
+        <field name="binding_model_id" ref="maintenance.model_maintenance_request"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

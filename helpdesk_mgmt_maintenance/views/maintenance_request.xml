@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- Equipment New button action -->  
+ <record id="action_status_new" model="ir.actions.act_window">
+        <field name="name">New</field>
+        <field name="res_model">maintenance.equipment.status</field>
+        <field name="view_mode">tree,form</field>
+        <field name="binding_model_id" ref="helpdesk_mgmt_maintenance.model_maintenance_equipment"/>
+        <field name="domain">[('equipment_ids', '=', active_id)]</field> 
+    </record>
+    <!-- Equipment Repared button action -->
+    <record id="action_status_repared" model="ir.actions.act_window">
+        <field name="name">Repared</field>
+        <field name="res_model">maintenance.equipment.status</field>
+        <field name="view_mode">tree,form</field>
+        <field name="binding_model_id" ref="helpdesk_mgmt_maintenance.model_maintenance_equipment"/>
+        <!-- <field name="domain">[('equipment_ids', '=', active_id),('state', 'not in', ['draft', 'waiting'])]</field> --> 
+    </record>
+    <!-- Equipment Scrap button action -->
+    <record id="action_status_scrap" model="ir.actions.act_window">
+        <field name="name">Scrap</field>
+        <field name="res_model">maintenance.equipment.status</field>
+        <field name="view_mode">tree,form</field>
+        <field name="binding_model_id" ref="helpdesk_mgmt_maintenance.model_maintenance_equipment"/>
+        <!-- <field name="domain">[('equipment_ids', '=', active_id),('state', '=', 'success')]</field> -->
+    </record>
+
+    
+    <!-- Equipment button action -->
+    <record id="maintenance_request_action_from_equipment" model="ir.actions.act_window">
+    <field name="name">Maintenance Equipment</field>
+    <field name="res_model">maintenance.equipment</field>
+    <field name="binding_model_id" ref="maintenance.model_maintenance_equipment"/> 
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="domain">[('equipment_ids', '=', active_id)]</field>
+    </record> 
+
+    <!-- Maintenance Requests tree view -->
+    <record id="help_main_maintenance_request_tree" model="ir.ui.view">
+        <field name="name">maintenance.request.tree (Helpdesk_mgmt Maintenance)</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='stage_id']" position="after">
+                <field name="maintenance_type" />
+            </xpath>
+            <xpath expr="//field[@name='maintenance_type']" position="after">
+                <field name="equipment_ids_count" string= 'Nº Equipment'/>
+            </xpath>
+        </field>
+    </record>
+
+
+     <!-- Maintenance Requests form view -->
+    <record id="help_main_maintenance_request_form" model="ir.ui.view">
+        <field name="name">maintenance.request.form (Helpdesk_mgmt Maintenance)</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='reset_equipment_request']" position="after">
+                <button name="action_send_email" string="Send by Email" type="object"  data-hotkey="g"/>
+                <!-- <button name="action_quotation_send" string="Send by Email" type="object" states="sent,sale" data-hotkey="g"/>  -->
+            </xpath>
+    
+            <xpath expr="//div[hasclass('oe_right')]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                  <div class="oe_right">
+                        <field name="kanban_state" class="oe_inline" widget="state_selection"/>
+                    </div>
+            </xpath>
+                  
+            <xpath expr="//div[hasclass('oe_right')]" position="after">
+                <div class="oe_button_box" name="button_box">
+
+                    <!-- Equipment count Button -->
+                    <button class="oe_stat_button" name="%(maintenance_request_action_from_equipment)d"
+                        type="action" icon="fa-cubes"
+                        attrs="{'invisible': [('equipment_ids', '=', False)]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="equipment_ids" invisible="1"/>
+                                <field name="equipment_ids_count" widget="statinfo" nolabel="1" class="mr4" />
+                            </span>
+                            <span class="o_stat_text">Equipment</span>
+                        </div>
+                    </button>
+                    <!-- Traceability count Button -->
+                    <button class="oe_stat_button" name="%(action_report_request_traceabilitty)d"
+                        type="action" icon="fa-arrow-up"
+                        attrs="{'invisible': [('tracking', '=', False)]}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="tracking" invisible="1" />
+                                </span>
+                                <span class="o_stat_text">Traceability</span>
+                            </div>
+                    </button>  
+                </div> 
+
+            </xpath>
+            
+            <!-- Hide equipment_id field view form -->
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- Hide equipment_id field view form -->
+            <xpath expr="//field[@name='equipment_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath> 
+
+            <!-- Hide company field view form -->
+            <!-- <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath> -->
+
+            <!-- Hide description field view form -->
+            <xpath expr="//field[@name='description']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+            <xpath expr="//sheet['.']" position="inside">
+                <notebook>
+                    <page string="Description" >
+                        <group name="name" string="Nota">
+                            <field name='description' placeholder="Internal Notes"/>
+                        </group>
+                    </page>
+
+                    <page string="Equipments">
+                        <group name="name" string="Line">
+                            <field name="equipment_ids" nolabel="1" > 
+                                <tree>
+                                    <field name="name" />
+                                    <field name="serial_no"  />
+                                </tree>
+                             </field>
+                        </group>
+                    </page>
+
+                    <page string="Corporate Social Responsibility">
+                        <div class="oe_button_box pt-2 mr-1 ml-1" name="button_box" modifiers="{}"> 
+                            <button class="oe_stat_button" name="%(action_status_new)d" type="action" icon="fa-list"   >
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <!-- <field name="equipment_ids" invisible="1" /> -->
+                                        <field name="new_status_id_count" widget="statinfo" nolabel="1" class="mr4" />  
+                                    </span>
+                                    <span class="o_stat_text">New</span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" name="%(action_status_repared)d" type="action" icon="fa-thumbs-o-up" >
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <!-- <field name="equipment_ids" invisible="1" /> -->
+                                        <field name="repared_status_id_count" widget="statinfo" nolabel="1" class="mr4" />
+                                    </span>
+                                    <span class="o_stat_text">Repared</span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" name="%(action_status_scrap)d" type="action" icon="fa-thumbs-down" >
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                  
+                                        <field name="scrap_status_id_count" widget="statinfo" nolabel="1" class="mr4" /> 
+                                    </span>
+                                    <span class="o_stat_text">Scrap</span>
+                                </div>
+                            </button>
+                        </div>
+
+                        <group name="name" string="CSR">
+
+                            <field name="equipment_ids" >
+                                <tree>
+                                   <field name="name" />
+                                    <field name="serial_no" />
+                                    <field name="equipment_brand" string="Brand"/>
+                                    <field name="status_id" string="Status"/>
+                                    <field name="ticket_ids" string="Tickets" widget='many2many_tags'/>
+                                </tree>
+                            </field>
+                        </group>
+                     
+                </page>
+
+                    <page string="Traceability">
+                        <group name="tracking" string="Traceability">
+                            <group>
+                            <field name="tracking" widget="radio"/>
+                            </group>
+                           <group>
+                                <field name="maintenance_team_id" />
+                                <field name="employee_id" string='Technician'/>
+                                <field name="request_date" />
+                                <field name="maintenance_type" />
+                                <field name="email_cc" />
+                            </group>
+                        </group>
+                    </page>
+                    </notebook>
+
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Maintenance Requests Kanban view -->
+    <!-- <record id="help_main_maintenance_request_kanban" model="ir.ui.view">
+        <field name="name">maintenance.request.kanban (Helpdesk_mgmt Maintenance)</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_kanban"/>
+        <field name="arch" type="xml">
+            
+        </field>
+    </record> -->
+
+
+    <!-- Maintenance Requests Search view -->
+    <!-- <record id="help_main_maintenance_request_search" model="ir.ui.view">
+        <field name="name">maintenance.request.search (Helpdesk_mgmt Maintenance)</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_search"/>
+        <field name="arch" type="xml">
+            
+        </field>
+    </record>   -->
+                       
+</odoo>

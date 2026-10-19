@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <data>
+        <!-- Equipment brand -->
+        <record id="brand_samsung" model="maintenance.equipment.brand">
+            <field name="name">Samsung</field>
+        </record>
+        <record id="brand_hp" model="maintenance.equipment.brand">
+            <field name="name">HP</field>
+        </record>
+        <record id="brand_apple" model="maintenance.equipment.brand">
+            <field name="name">Apple</field>
+        </record>
+        <record id="brand_lenovo" model="maintenance.equipment.brand">
+            <field name="name">Lenovo</field>
+            <field name="color">3</field>
+        </record>
+        <record id="brand_dell" model="maintenance.equipment.brand">
+            <field name="name">Dell</field>
+        </record>
+        <record id="brand_asus" model="maintenance.equipment.brand">
+            <field name="name">Asus</field>
+        <!-- <field name="color">3</field> -->
+        </record>
+        <record id="brand_msi" model="maintenance.equipment.brand">
+            <field name="name">MSI</field>
+        </record>
+        <record id="brand_razer" model="maintenance.equipment.brand">
+            <field name="name">Razer</field>
+        </record>
+
+
+        <!-- Equipment Status -->
+        <record id="new_status" model="maintenance.equipment.status">
+            <field name="name">New</field>
+        </record>
+        <record id="new_repared" model="maintenance.equipment.status">
+            <field name="name">Repared</field>
+        </record>
+        <record id="new_scrap" model="maintenance.equipment.status">
+            <field name="name">Scrap</field>
+            <field name="scrap" eval="True" />
+        </record>
+  </data>
+</odoo>

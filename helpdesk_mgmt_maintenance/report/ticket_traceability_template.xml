@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="ticket_traceability_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center"><h2>Ticket Traceability</h2></div>
+                        <br/>
+                        <br/>                       
+                    <div class="oe_structure"/>
+
+                    <h4 class="mt16">
+                        <span>Ticket: </span>
+                        <span t-field="doc.number"/>
+                    </h4>
+                    <hr/>
+
+                    <div class="row mt32 mb32" id="informations">
+                        <div class="col-auto col-2 mw-100 mb-2">
+                            <strong> Ticket number:</strong>
+                            <p class="m-0" t-field="doc.number"/>
+                        </div>
+
+                        <div class="col-auto col-2 mw-100 mb-2">
+                            <strong>Title:</strong>
+                            <p class="m-0" t-field="doc.name"/>
+                        </div>
+
+                        <div class="col-auto col-2 mw-100 mb-2">
+                            <strong>Created on:</strong>
+                            <p class="m-0" t-field="doc.create_date"/>
+                        </div>
+
+                        <div class="col-auto col-2 mw-100 mb-2">
+                            <strong>Status:</strong>
+                            <p class="m-0" t-field="doc.name"/>
+                        </div>
+
+                        <div class="col-auto col-2 mw-100 mb-2">
+                            <strong>Assigned user:</strong>
+                            <p class="m-0" t-field="doc.user_id"/>
+                        </div>
+                        <!-- <div class="col-auto col-2 mw-100 mb-2">
+                            <strong>Duraction:</strong>
+                            <p class="m-0" t-field="doc.total_time" t-options="{'widget': 'float_time'}"/>
+                        </div> -->
+                        <!-- 
+                        <t t-set="expected_days_int" t-value="int(doc.expected_days)"/>
+                        <strong>Expected:</strong>
+                        <p> <t t-esc="expected_days_int" /> days </p> -->
+                    </div> 
+
+                        <t t-if="doc.equipment_ids">
+                                <table class="table table-sd o_main_table" name="traceability">
+                                    <thead>
+                                        <tr style="background-color:lightgray;">
+                                            <th>Equipment Name</th>
+                                            <th>Serial number</th>
+                                            <th>Brand</th>
+                                            <th>Modal</th>
+                                            <th>Category</th>
+                                            <th>Technician</th>
+                                            <!-- <th class="text-right">Progress</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody class="equipment_tbody">
+                                          <t t-set="equipment_ids_count" t-value="0"/>
+                                            <t t-foreach="doc.equipment_ids" t-as="line">
+                                                <t t-set="equipment_ids_count" t-value="equipment_ids_count + 1"/>
+                                                <tr>  
+                                                    <td> <span t-field="line.name" /> </td>
+                                                    <td> <span t-field="line.serial_no"/> </td>
+                                                    <td> <span t-field="line.equipment_brand"/> </td>
+                                                    <td> <span t-field="line.model"/> </td>
+                                                    <td> <span t-field="line.category_id"/> </td>
+                                                    <td> <span t-field="line.technician_user_id"/> </td>
+                                                </tr>                                              
+                                            </t>                                            
+                                        <tr class="border-black o_total">
+                                            <td class="text-left">
+                                                <strong>Total:</strong>
+                                            </td>
+                                            <td class="text-left">
+                                                <span  t-esc="equipment_ids_count"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_ticket_traceabilitty" model="ir.actions.report">
+        <field name="name">Ticket Traceability</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">helpdesk_mgmt_maintenance.ticket_traceability_report_template</field>
+        <field name="report_file">helpdesk_mgmt_maintenance.ticket_traceability_report_template</field>
+        <field name="binding_model_id" ref="helpdesk_mgmt.model_helpdesk_ticket"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

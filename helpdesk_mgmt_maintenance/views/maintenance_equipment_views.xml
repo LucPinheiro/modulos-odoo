@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- Maintenance Team search view -->
+    <!-- Maintenance Search Falta -->
+    <record id="help_main_maintenance_team_search" model="ir.ui.view">
+        <field name="name">maintenance.team.search (Helpdesk Maintenance)</field>
+        <field name="model">maintenance.team</field>
+        <field name="inherit_id" ref="maintenance.maintenance_team_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="after">
+                <separator />
+                <filter name="today" string="Today" />
+                <filter name="yesterday" string="Yesterday"  />
+                <separator />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Maintenance Equipament kanban view -->
+    <record id="help_main_maintenance_equipaments_kanban" model="ir.ui.view">
+        <field name="name">maintenance.equipment.kanban (Helpdesk Maintenance)</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_kanban"/>
+        <field name="arch" type="xml">
+            <!-- Added ticket_ids fields-->
+            <xpath expr="//field[@name='serial_no']" position="after">
+                <field name="ticket_ids" />
+            </xpath>
+            <!-- Name -->
+            <!-- Hide Name -->
+            <xpath expr="//div[hasclass('o_kanban_record_top')]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Hide color Button -->
+            <xpath expr="//div[hasclass('o_dropdown_kanban')]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath> 
+
+            <!-- Style and show Name -->
+            <xpath expr="//div[hasclass('o_kanban_record_top')]" position="after">
+                <div style="background-color:#F2F2F2; border-radius: 5px; padding:5px; padding-left:10px">
+                    <b class="o_kanban_record_title">
+                        <strong><field name="name"/> </strong>
+                        <small><span t-if="record.model.raw_value"> (<field name="model"/>)</span></small>
+                        <!-- Show color Button -->
+                        <div t-attf-class="{{!selection_mode ? 'oe_kanban_color_' + kanban_getcolor(record.color.raw_value) : ''}} oe_kanban_card oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown" t-if="!selection_mode">
+                                <a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit Equipament...</a></t>
+                                    <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete Equipament</a></t>
+                                    <div role="separator" class="dropdown-divider"></div>
+                                    <div role="separator" class="dropdown-header">Record Colour</div>
+                                    <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                </div>
+                            </div>
+                        </div>                             
+                    </b>
+                </div>
+            </xpath>
+
+            <!-- Hide Serial no -->
+            <xpath expr="//div[hasclass('o_kanban_record_body')]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Show Serial no -->
+            <xpath expr="//div[hasclass('o_kanban_record_body')]" position="after">
+                <div style="padding:5px; padding-left:10px">
+                    <span> <strong>Number Serial:</strong>
+                    <b class="o_kanban_record_title">
+                    <field name="serial_no"/> 
+                    </b>
+                    <br/>
+                    </span>
+                    <!-- Show Request Button and activity -->
+                    <div class="oe_kanban_bottom_left">
+                        <div class="badge badge-danger" t-if="!selection_mode and record.maintenance_open_count.raw_value" >
+                            <t t-out="record.maintenance_open_count.raw_value"/> Request
+                        </div>
+                        <div class="badge badge-secondary" t-if="!selection_mode and record.next_action_date.raw_value" >
+                            <t t-out="moment(record.next_action_date.raw_value).format('MMMM Do')"/>
+                        </div>
+                    </div>
+                    <div class="oe_kanban_bottom_right">
+                        <div class="o_kanban_inline_block" t-if="!selection_mode">
+                            <field name="activity_ids" widget="kanban_activity" />
+                        </div>
+                        <field name="owner_user_id" widget="many2one_avatar_user"/>
+                    </div>
+                        <!-- Number Ticket and priority  -->
+                    <span> <strong>Tickets:</strong>
+                        <b class="o_kanban_record_title">
+                            <field name="ticket_ids"/> 
+                            <field name="priority_ticket" widget="priority"/> 
+                            </b>
+                            <br/>
+                    </span>
+                </div>
+            </xpath>
+
+            <!-- Hide Request Button and activity -->
+            <xpath expr="//div[hasclass('o_kanban_record_bottom')]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Maintenance Equipament tree view -->
+    <record id="help_main_maintenance_equipments_tree" model="ir.ui.view">
+        <field name="name">maintenance.equipment.tree (Helpdesk Maintenance)</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//field[@name='assign_date']" position="after">
+                <field name="equipment_line_ids" string="Line" widget='many2many_tags' />
+            </xpath> -->
+            <xpath expr="//field[@name='technician_user_id']" position="after">
+               <field name="request_stage_id" string='Request Stage'/>  
+                <field name="ticket_ids" string="Tickets" widget='many2many_tags' />
+                <field name="ticket_count" string="Nº Tickets" />
+            </xpath>
+            <!-- Hide company field view tree -->
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="status_id" string="Status" />
+            </xpath>
+
+        </field> 
+    </record> 
+
+<!-- Default filter  Ticket -->
+    <!-- <record id="hr_attendance.hr_attendance_action" model="ir.actions.act_window">
+        <field name="context">{"search_default_this_week": 1} </field>
+    </record> -->
+    <!-- Ticket button action -->
+    <record id="helpdesk_ticket_action_from_equipment" model="ir.actions.act_window">
+    <field name="name">Helpdesk Ticket</field>
+    <field name="res_model">helpdesk.ticket</field>
+    <field name="binding_model_id" ref="helpdesk_mgmt.model_helpdesk_ticket"/> 
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="domain">[('equipment_ids', '=', active_id)]</field>
+    </record>
+
+    <!-- Maintenance Equipament form view -->
+   <record id="help_main_maintenance_equipaments_form" model="ir.ui.view">
+        <field name="name">maintenance.equipament.form (Helpdesk Maintenance)</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Image -->
+            <!-- ····· -->
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <field name="image_1920" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_128&quot;}"/>
+            </xpath>
+
+            <!-- Buttons -->
+            <!-- ······· -->
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button class="oe_stat_button" name="%(helpdesk_ticket_action_from_equipment)d"
+                 type="action" icon="fa-ticket"  
+                  attrs="{'invisible': [('ticket_ids', '=', False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="ticket_ids" invisible="1"/>
+                            <field name="ticket_count" widget="statinfo" nolabel="1" class="mr4" />
+                        </span>
+                        <span class="o_stat_text">Ticket</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" name="%(action_report_equipment_traceabilitty)d"
+                 type="action" icon="fa-arrow-up"
+                  attrs="{'invisible': [('tracking', '=', False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="tracking" invisible="1" />
+                        </span>
+                        <span class="o_stat_text">Traceability</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <!-- Body -->
+            <!-- ···· -->
+
+            <!-- Hide company field view form -->
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="equipment_brand" />
+                <!-- <field name="equipment_status_id" /> -->
+                <field name="status_id" />
+            </xpath>
+
+            <!-- Pensar si seran las 2 cosas: empleados y departamento para el equipo -->
+            
+            <!-- Pages -->
+            <!-- ····· -->
+
+            <!-- Hide Page Description -->
+            <xpath expr="//notebook//page[@name='description']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Show Page Description -->
+            <!-- <xpath expr="//notebook//page[@name='description']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath> -->
+
+            <xpath expr="//notebook//page[@name='maintenance']" position="after">
+                <page string="Helpdesk">
+                    <group>
+                        <field name="ticket_active" string='Ticket' widget="radio"/> 
+                    </group>
+                    <group name="name" string="Lines" attrs="{'invisible': [('ticket_active', '=', 'not')]}">
+                            <field name="ticket_ids" nolabel="1" />
+                    </group>
+                </page>
+
+                <page string="Projects">
+                    <group name="name" string="Lines">
+                            <field name="project_ids" nolabel="1" />
+                    </group>
+                </page>
+
+                <page string="Traceability">
+                    <group>
+                        <group>
+                            <field name="tracking" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="serial_no" />
+                            <field name="model" />
+                            <field name="assign_date" />
+                            <field name="scrap_date" />
+                        </group>
+                     </group>
+                </page>
+
+
+            </xpath>
+        </field> 
+    </record>
+
+
+    <!-- Maintenance Equipaments Search view -->
+   <!-- <record id="help_main_maintenance_equipaments_search" model="ir.ui.view">
+        <field name="name">maintenance.equipament.search (Helpdesk Maintenance)</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref=""/>
+        <field name="arch" type="xml">
+            
+        </field>
+    </record> -->
+
+    <!-- Maintenance Equipaments Calendar view -->
+    <record id="help_main_maintenance_equipaments_calendar" model="ir.ui.view">
+        <field name="name">equipment.equipment.calendar (Helpdesk Maintenance)</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+        <!-- <calendar date_start="schedule_date" date_delay="duration" color="user_id" event_limit="5"> -->
+            <calendar date_start="schedule_date" >
+                <field name="name" filters="1"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Maintenance Equipaments pivot view -->
+    <!-- <record id="help_main_maintenance_equipaments_pivot" model="ir.ui.view">
+        <field name="name">equipment.equipment.pivot (Helpdesk Maintenance)</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="inherit_module_name.inherit_view_id"/>
+        <field name="arch" type="xml">
+            
+        </field>
+    </record> -->
+
+
+</odoo>
