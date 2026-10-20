@@ -13,7 +13,7 @@ Permite realizar las siguientes acciones:
 - **Personalizar las etiquetas promocionales:** Mejoras en la presentación de las cintas y distintivos de productos.
 - **Optimizar los estilos de la tienda:** Incorporación de estilos SCSS personalizados para conseguir una interfaz más moderna y uniforme.
 - **Mantener la independencia del módulo:** Funcionamiento sin dependencia de `vitosec_custom` ni herramientas adicionales de gestión de traducciones.
-- 
+  
 ## 🚚 TMS (Transport Management System)
 Este módulo está diseñado para gestionar de forma integral los servicios de **transporte y logística** en Odoo. 
 
