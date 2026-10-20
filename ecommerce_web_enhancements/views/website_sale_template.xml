@@ -1,0 +1,819 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+     <template id="dynamic_filter_product_custom" inherit_id="website_sale.dynamic_filter_template_product_product_products_item" name="Vitosec - Custom Product Carousel">
+
+        <!-- NOMBRE DEL PRODUCTO -->
+        <xpath expr="//h6[contains(@class, 'o_wsale_products_item_title')]" position="attributes">
+            <attribute name="class" add="vitosec_product_name" separator=" "/>
+        </xpath>
+
+        <!-- LÍNEA DEBAJO DEL NOMBRE -->
+        <xpath expr="//h6[contains(@class, 'o_wsale_products_item_title')]" position="after">
+            <div class="vitosec_product_separator"/>
+        </xpath>
+
+    </template>
+
+     <template id="product_description_custom" inherit_id="website_sale.product">
+        <!-- Eliminar descripción original -->
+        <xpath expr="//div[@id='oe_structure_website_sale_product_2']" position="replace">
+        </xpath>
+
+    </template>
+
+    <template id="shop_product_searchbox_vitosec_web" inherit_id="website.website_search_box">
+        <xpath expr="//input[@name='search']" position="attributes">
+            <attribute name="style">background-color:#FFFFFF !important; border: 1px solid #E6E6E6 !important</attribute>
+        </xpath>
+        <xpath expr="//button[@type='submit']" position="attributes">
+            <attribute name="style">background-color:#FFFFFF !important; border: 1px solid #E6E6E6 !important</attribute>
+        </xpath>
+    </template>
+
+    <template id="shop_product_sort_vitosec_web" inherit_id="website_sale.sort">
+        <xpath expr="//a" position="attributes">
+            <attribute name="style">background-color:#FFFFFF !important; border: 1px solid #E6E6E6 !important</attribute>
+        </xpath>
+    </template>
+
+   <!-- <template id="shop_product_add_grid_or_list_option_vitosec_web" inherit_id="website_sale.add_grid_or_list_option">
+        <xpath expr="//label[1]" position="attributes">
+            <attribute name="style">background-color:#FFFFFF !important; border: 1px solid #E6E6E6 !important</attribute>
+        </xpath>
+        <xpath expr="//label[2]" position="attributes">
+            <attribute name="style">background-color:#FFFFFF !important; border: 1px solid #E6E6E6 !important</attribute>
+        </xpath>
+    </template>    -->
+
+  <!--  <template id="shop_product_invisible_products_breadcrumb_vitosec_web" inherit_id="website_sale.products">
+        <xpath expr="//t[@t-call='website_sale.products_breadcrumb']" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </xpath>
+    </template> -->
+
+
+  <!--  <template  id="shop_product_style_filmstrip_categories_vitosec_web" inherit_id="website_sale.filmstrip_categories">
+        <xpath expr="//div[@class='o_wsale_filmstip_container d-flex align-items-stretch mb-2 overflow-hidden']" position="replace">
+            <div t-if="entries" class="o_wsale_filmstip_container d-flex align-items-stretch mb-2 overflow-hidden">
+                <div class="o_wsale_filmstip_wrapper pb-1 overflow-auto">
+                    <ul class="o_wsale_filmstip d-flex flex-wrap align-items-stretch mb-0 list-unstyled overflow-visible">
+                        <t t-foreach="entries" t-as="c" t-if="c.image_128" t-set="atLeastOneImage" t-value="True"/>
+                        <t t-if="category.parent_id" t-set="backUrl" t-value="keep('/shop/category/' + slug(category.parent_id), category=0)"/>
+                        <t t-else="" t-set="backUrl" t-value="'/shop'"/>
+                            <li t-foreach="entries" t-as="c" t-attf-class="d-flex {{'pe-3' if not c_last else ''}} mb-2" t-att-data-link-href="keep('/shop/category/' + slug(c), category=0)">
+                                <input type="radio" t-attf-name="wsale_categories_top_radios_{{parentCategoryId}}" class="btn-check pe-none" t-att-id="c.id" t-att-value="c.id" t-att-checked="'true' if c.id == category.id else None"/>
+
+                                <div style="background-color:white; padding-right: 15px !important; padding-left: 10px !important; padding-bottom: 1px !important; padding-top: 1px !important; margin-right:-15px;border-radius: 0px; !important" t-attf-class="btn btn-{{navClass}} d-flex align-items-center {{'ps-2 pe-3' if c.image_128 else 'px-4'}} fs-6 fw-normal {{ 'border-primary' if c.id == category.id else '' }}" t-att-for="c.id">
+                                    <div style="padding-right: 28px !importante" t-if="c.image_128" t-attf-style="background-image:url('data:image/png;base64,#{c.image_128}')" class="o_image_40_cover oe_img_bg o_bg_img_center rounded-3 me-3" t-att-alt="c.name "/>
+                                    <span  t-field="c.name"/>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </xpath>
+
+        <xpath expr="//div[@class='o_wsale_filmstip_wrapper pb-1 overflow-auto']" position="attributes">
+            <attribute name="style">overflow: visible !important;</attribute>
+         </xpath>
+
+    </template>  -->
+
+   <!-- <template  id="shop_product_style_products_attributes_vitosec_web" inherit_id="website_sale.products_attributes">
+        <xpath expr="//t[@t-foreach='attributes']" position="replace">
+
+            <div class="grid-columnas" style="display: grid; grid-template-columns: 1fr 1fr;gap: 2px; padding: 5px; ">
+                <t t-foreach="attributes" t-as="a">
+                    <t t-cache="a,attrib_set">
+                        <div class="accordion-item nav-item mb-1 border-0" t-if="a.value_ids and len(a.value_ids) &gt; 1" style="padding: 5px;border-radius: 0px; ">
+                            <h6 class="mb-3" style="flex: 1;">
+                                <b class="o_products_attributes_title d-none d-lg-block" t-field="a.name"/>
+                            </h6>
+                            <div t-attf-id="o_products_attributes_{{a.id}}" class="">
+                                <t t-if="a.display_type == 'select'">
+                                    <select class="form-select css_attribute_select mb-2" name="attrib">
+                                        <option value="" selected="true">-</option>
+                                        <t t-foreach="a.value_ids" t-as="v">
+                                            <option t-att-value="'%s-%s' % (a.id,v.id)" t-esc="v.name" t-att-selected="v.id in attrib_set"/>
+                                        </t>
+                                    </select>
+                                </t>
+                                <div t-elif="a.display_type == 'color'" class="mb-3">
+                                    <t t-call="website_sale.o_wsale_offcanvas_color_attribute"/>
+                                </div>
+                                <div t-elif="a.display_type in ('radio', 'pills', 'multi')" class="flex-column mb-3">
+                                    <t t-foreach="a.value_ids" t-as="v">
+                                        <div class="form-check mb-1">
+                                            <input type="checkbox" name="attrib" class="form-check-input" t-att-id="'%s-%s' % (a.id,v.id)" t-att-value="'%s-%s' % (a.id,v.id)" t-att-checked="'checked' if v.id in attrib_set else None"/>
+                                            <label class="form-check-label fw-normal" t-att-for="'%s-%s' % (a.id,v.id)" t-field="v.name"/>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </div>
+
+        </xpath>
+
+    </template> -->
+
+    <template id="shop_product_style_products_item_br_vitosec_web" inherit_id="website_sale.products_item">
+
+    <!-- =====================================================
+         TARJETA SIN REDONDEO
+         ===================================================== -->
+    <xpath expr="//form" position="attributes">
+        <attribute name="style">
+            border-radius:0 !important;
+        </attribute>
+    </xpath>
+
+
+    <!-- =====================================================
+         REFERENCIA INTERNA ANTES DEL NOMBRE
+         IMAGEN
+         REFERENCIA
+         NOMBRE
+         ===================================================== -->
+    <xpath expr="//h2[hasclass('o_wsale_products_item_title')]" position="before">
+
+        <div t-if="product.default_code" class="vitosec_product_default_code">
+
+            <a t-att-href="product_href" class="text-decoration-none" style="                     font-size:18px;                     font-weight:bold;                     color:#252424;                ">
+
+                <span t-field="product.default_code"/>
+
+            </a>
+
+        </div>
+
+    </xpath>
+
+
+    <!-- =====================================================
+         NOMBRE DEL PRODUCTO EN NARANJA VITOSEC
+         ===================================================== -->
+    <xpath expr="//h2[hasclass('o_wsale_products_item_title')]" position="attributes">
+
+        <attribute name="style">
+            color:#f29b11 !important;
+        </attribute>
+
+    </xpath>
+
+    <!-- El enlace dentro del nombre también naranja -->
+    <xpath expr="//h2[hasclass('o_wsale_products_item_title')]//a" position="attributes">
+
+        <attribute name="style">
+            color:#f29b11 !important;
+            text-decoration:none !important;
+        </attribute>
+
+    </xpath>
+
+
+    <!-- =====================================================
+         CONTENEDOR INFERIOR:
+         PRECIO + BOTÓN EN COLUMNA
+         ===================================================== -->
+    <xpath expr="//div[hasclass('o_wsale_product_sub')]" position="attributes">
+
+        <attribute name="style">
+            display:flex !important;
+            flex-direction:column !important;
+            align-items:center !important;
+            justify-content:flex-start !important;
+            width:100% !important;
+            gap:8px !important;
+        </attribute>
+
+    </xpath>
+
+
+    <!-- =====================================================
+         OCULTAR PRECIO NATIVO
+         ===================================================== -->
+    <xpath expr="//div[hasclass('product_price')]" position="attributes">
+
+        <attribute name="style">
+            display:none !important;
+        </attribute>
+
+    </xpath>
+
+
+    <!-- =====================================================
+         OCULTAR BOTÓN NATIVO DE ODOO
+         ===================================================== -->
+    <xpath expr="//div[hasclass('o_wsale_product_btn')]" position="attributes">
+
+        <attribute name="style">
+            display:none !important;
+        </attribute>
+
+    </xpath>
+
+
+    <!-- =====================================================
+         PRECIO + BOTÓN PERSONALIZADO
+         ===================================================== -->
+    <xpath expr="//div[hasclass('product_price')]" position="after">
+
+        <!-- Recuperar precios -->
+        <t t-set="vitosec_price_vals" t-value="get_product_prices(product)"/>
+
+
+        <!-- =================================================
+             PRECIO CENTRADO
+             ================================================= -->
+        <div class="vitosec_product_price" style="                 width:100%;                 display:flex;                 justify-content:center;                 align-items:center;                 text-align:center;                 margin-top:8px;                 margin-bottom:6px;                 font-size:18px;                 font-weight:700;                 color:#212529;              ">
+
+            <span t-if="vitosec_price_vals['price_reduce'] or not website.prevent_zero_price_sale" t-out="vitosec_price_vals['price_reduce']" t-options="{                       'widget': 'monetary',                       'display_currency': website.currency_id                   }"/>
+
+        </div>
+
+
+        <!-- =================================================
+             BOTÓN
+             ================================================= -->
+        <div class="o_wsale_product_btn_2" style="                 width:100%;                 display:flex;                 justify-content:center;                 align-items:center;              ">
+
+            <form t-if="product._is_add_to_cart_possible()" action="/shop/cart/update" method="POST" style="                       margin:0;                       display:flex;                       justify-content:center;                       width:100%;                   ">
+
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" t-nocache="The csrf token must always be up to date."/>
+
+                <div class="js_product js_main_product mb-3" style="                         display:flex;                         justify-content:center;                         align-items:center;                         width:100%;                      ">
+
+                    <p class="css_not_available_msg alert alert-warning">
+                        This combination does not exist.
+                    </p>
+
+
+                    <!-- =====================================
+                         PRODUCTO CON PRECIO
+                         ===================================== -->
+                    <t t-if="vitosec_price_vals['price_reduce']">
+
+                        <div id="o_wsale_cta_wrapper" style="                                 display:flex;                                 justify-content:center;                                 align-items:center;                                 background-color:#f29b11 !important;                                 padding:0.45rem 1.35rem;                                 border-radius:10px;                              ">
+
+                            <t t-set="hasQuantities" t-value="false"/>
+
+                            <t t-set="hasBuyNow" t-value="false"/>
+
+                            <t t-set="ctaSizeBig" t-value="not hasQuantities or not hasBuyNow"/>
+
+                            <a data-animation-selector=".o_wsale_product_images" role="button" id="add_to_cart" href="#" style="                                     display:flex;                                     justify-content:center;                                     align-items:center;                                     color:#212529;                                     background-color:#f29b11 !important;                                     border:0 !important;                                     text-decoration:none;                                ">
+
+                                <i class="fa fa-shopping-cart me-2" style="color:#212529"/>
+
+                                <span style="color:#212529">
+                                    In den Warenkorb
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </t>
+
+
+                    <!-- =====================================
+                         SIN PRECIO / CONTACTAR
+                         ===================================== -->
+                    <t t-else="">
+
+                        <div id="o_wsale_cta_wrapper" style="                                 display:flex;                                 justify-content:center;                                 align-items:center;                                 border:#f29b11 2px solid;                                 padding:0.35rem 1.35rem;                                 border-radius:10px;                              ">
+
+                            <a t-att-href="website.contact_us_button_url" style="                                     color:#000000;                                     text-decoration:none;                                ">
+
+                                Kontaktieren Sie uns
+
+                            </a>
+
+                        </div>
+
+                    </t>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </xpath>
+
+</template>
+
+  <!--  <template  id="shop_product_description_style_price_vitosec_web" inherit_id="website_sale.product_price">
+        <xpath expr="//h3[1]" position="attributes">
+            <attribute name="style">color:black; font-weight:bold; font-size: 25px; </attribute>
+        </xpath>
+    </template>  -->
+
+   <!--  <template  id="shop_product_add_to_cart_style_vitosec_web" active="True" inherit_id="website_sale.products_add_to_cart">
+        <xpath expr="//t/a" position="attributes">
+            <attribute name="style">padding-top: 2px; padding-right: 8px; padding-bottom: 5px; padding-left: 8px;</attribute>
+        </xpath>
+        <xpath expr="//t/a" position="attributes">
+              <attribute name="style">display:none;</attribute>
+        </xpath>
+    </template> -->
+
+    <!--
+    <template  id="shop_product_add_to_wishlist_style_vitosec_web" inherit_id="website_sale_wishlist.add_to_wishlist">
+        <xpath expr="//button" position="attributes">
+            <attribute name="style">padding-top: 2px; padding-right: 10px; padding-bottom: 5px; padding-left: 8px;</attribute>
+        </xpath>
+
+        <xpath expr="//button" position="attributes">
+              <attribute name="style">display:none;</attribute>
+          </xpath>
+    </template> -->
+
+    <!--  <template  id="price_dynamic_product_style_vitosec_web" inherit_id="website_sale.price_dynamic_filter_template_product_product">
+        <xpath expr="//span[@t-esc='record_price']" position="attributes">
+            <attribute name="class">fw-bold invisible</attribute>
+        </xpath>
+
+        <xpath expr="//del[@class='text-danger ms-1 h6']" position="before">
+            <table>
+                <tr style="font-weight:bold;  color: #000000;  font-size: 25px;">
+                    <td>
+                        <span t-esc="record_price" class="fw-bold" style="font-weight:bold;" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+    </template>  -->
+
+   <!--  <template  id="product_borderless_1_style_vitosec_web" inherit_id="website_sale.dynamic_filter_template_product_product_borderless_1">
+        <xpath expr="//div[contains(@class, 'card-title')]" position="before">
+            <div class="h5 card-title" t-field="record.default_code" style="font-size:18px; font-weight: bold; color: #252424"/>
+        </xpath>
+        <xpath expr="//t[@t-set='record']" position="attributes">
+             <attribute name="style">box-shadow: 3px 3px 3px #E8E7E3;</attribute>
+        </xpath>
+
+        <xpath expr="//div[contains(@class, 'card-title')]" position="attributes">
+             <attribute name="style">color:#F1A41F; hover:black;</attribute>
+        </xpath>
+
+         <xpath expr="//div[@class='mt-2']" position="before">
+            <br/>
+            <div class="progress" style="height:1px;">
+                <div class="progress-bar" role="progressbar" style="width: 100%; background: #E8E7E3" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"/>
+            </div>
+        </xpath>
+
+    </template> -->
+
+  <!--  <template  id="product_borderless_2_style_vitosec_web" inherit_id="website_sale.dynamic_filter_template_product_product_borderless_2">
+        <xpath expr="//div[@class='text-end o_dynamic_snippet_btn_wrapper']" position="replace">
+                 <t t-foreach="records" t-as="data" data-thumb="/website_sale/static/src/img/snippets_options/product_borderless_2.svg">
+                <t t-set="record" t-value="data['_record']"/>
+
+                <div class="o_carousel_product_card bg-transparent w-100 card border-1" t-att-data-add2cart-rerender="data.get('_add2cart_rerender')">
+                    <div t-if="is_sample" class="h5 o_ribbon_right bg-primary text-uppercase">Sample</div>
+                    <input type="hidden" name="product-id" t-att-data-product-id="record.id"/>
+                    <a class="o_carousel_product_img_link o_dynamic_product_hovered" t-att-href="record.website_url">
+                        <div class="overflow-hidden rounded">
+                            <img class="card-img-top o_img_product_square o_img_product_cover h-auto" loading="lazy" t-att-src="data['image_512']" t-att-alt="record.display_name"/>
+                        </div>
+                    </a>
+
+                    <div class="o_carousel_product_card_body h-100 p-3 d-flex flex-column justify-content-between">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap mb-2">
+                            <div class="h5 mb-0 me-4">
+                            <div class="h4 card-title" t-field="record.default_code" style="font-size:18px; font-weight: bold; color: #252424 !important"/>
+                            <div class="h5 card-title" t-field="record.display_name"/>
+
+                         <div class="progress" style="height:1px;">
+                            <div class="progress-bar" role="progressbar" style="width: 100%; background: #E8E7E3" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"/>
+                        </div>
+                                <t t-call="website_sale.price_dynamic_filter_template_product_product"/>
+                            </div>
+                            <div class="h6 mb-0">
+                                <t t-if="is_view_active('website_sale.product_comment')">
+                                    <t t-call="portal_rating.rating_widget_stars_static">
+                                        <t t-set="rating_style_compressed" t-value="true"/>
+                                        <t t-set="rating_avg" t-value="record.rating_avg"/>
+                                        <t t-set="rating_count" t-value="record.rating_count"/>
+                                    </t>
+                                </t>
+                            </div>
+                    </div>
+
+                        <div class="text-end o_dynamic_snippet_btn_wrapper" t-if="record._website_show_quick_add()">
+                            <button type="button" role="button" class="btn btn-primary js_add_cart w-100" title="Add to Cart">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template> -->
+
+    <!-- =========================================================
+     ODOO 19 - MOVER CATEGORÍAS DEBAJO DEL BUSCADOR/FILTROS
+     ========================================================= -->
+
+        <template id="vitosec_shop_categories_after_toolbar" inherit_id="website_sale.products">
+
+            <xpath expr="//div[hasclass('products_header')]" position="after">
+
+                <xpath expr="//t[@t-call='website_sale.filmstrip_categories']" position="move"/>
+
+            </xpath>
+
+        </template>
+
+    <template id="shop_product_carousel_description_vitosec_web" inherit_id="website_sale.product">
+
+        <!-- =====================================================
+         1. BUSCADOR ANTES DE LA FICHA DEL PRODUCTO
+         ===================================================== -->
+
+        <xpath expr="//section[@id='product_detail']" position="before">
+
+                <div class="container mb-3 vitosec-product-topbar">
+
+                    <div class="row align-items-center g-3">
+
+                        <div class="col-lg-5">
+
+                            <t t-call="website_sale.search">
+                                <t t-set="search" t-value="False"/>
+                                <t t-set="placeholder">Suchen ...</t>
+                            </t>
+
+                        </div>
+
+                        <div class="col-lg-7">
+
+                            <t t-call="website_sale.products_breadcrumb"/>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </xpath>
+
+
+            <!-- =====================================================
+                 2. FICHA PRODUCTO VITOSEC
+                 ORDEN: NOMBRE > DESCRIPCIÓN CORTA > PRECIO > REFERENCIA
+                 ===================================================== -->
+
+            <!-- DESCRIPCIÓN CORTA ANTES DEL PRECIO -->
+            <xpath expr="//t[@t-call='website_sale.product_price']" position="before">
+
+                <div t-if="product.short_description_product" class="vitosec_product_short_description" style="color:#252424; font-size:16px; line-height:1.45; margin-top:10px; margin-bottom:18px;">
+                    <span t-field="product.short_description_product"/>
+                </div>
+
+            </xpath>
+
+            <!-- REFERENCIA INTERNA DESPUÉS DEL PRECIO -->
+            <xpath expr="//t[@t-call='website_sale.product_price']" position="after">
+
+                <div t-if="product.default_code" class="vitosec_product_detail_reference" style="color:#f29b11 !important; font-size:16px; font-weight:600; margin-top:8px; margin-bottom:10px;">
+                    <span t-field="product.default_code"/>
+                </div>
+
+                <div style="width:100%; height:1px; background:#dddddd; margin-top:8px; margin-bottom:20px;"/>
+
+            </xpath>
+
+            <!-- OCULTAR DESCRIPCIÓN LARGA ORIGINAL; SE MANTIENE EN LA PESTAÑA DESCRIPTION -->
+            <xpath expr="//div[@id='product_full_description']" position="attributes">
+                <attribute name="style">display:none !important;</attribute>
+            </xpath>
+
+
+        <xpath expr="//div[@id='product_full_description']" position="after">
+             <div class="container-fluid">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-12">
+                            <div class="s_tabs_nav card-header">
+                                    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link  o_default_snippet_text active" id="nav_tabs_link_product_vitosec_1" data-bs-toggle="tab" href="#nav_tabs_content_product_vitosec_1" role="tab" aria-controls="nav_tabs_content_product_vitosec_1" aria-selected="false">Description</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link o_default_snippet_text" id="nav_tabs_link_product_vitosec_td" data-bs-toggle="tab" href="#nav_tabs_content_product_vitosec_td" role="tab" aria-controls="nav_tabs_content_product_vitosec_td" aria-selected="false">Technical data</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link o_default_snippet_text" id="nav_tabs_link_product_vitosec_2" data-bs-toggle="tab" href="#nav_tabs_content_product_vitosec_2" role="tab" aria-controls="nav_tabs_content_product_vitosec_2" aria-selected="false">Accessories items</a>
+                                </li>
+                                <li class="nav-item">
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row justify-content-md-center">
+                     <div class="col col-lg-10">
+                        <div class="s_tabs_content tab-content card-body mb-3">
+
+                            <div class="tab-pane fade active show" id="nav_tabs_content_product_vitosec_1" role="tabpanel" aria-labelledby="nav_tabs_link_product_vitosec_1">
+                                <div class="oe_structure oe_empty" data-editor-message-default="true" data-editor-message="ARRASTRE BLOQUES AQUÍ">
+                                    <section class="s_text_block" style="background-image: none;" data-name="Texto">
+                                        <div class="s_allow_columns container-fluid">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div t-field="product.website_description" id="website_description"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                 <div class="oe_structure oe_empty" data-editor-message-default="true" data-editor-message="ARRASTRE BLOQUES AQUÍ">
+                                    <t t-if="product.accessory_product_ids">
+                                         <div class="progress" style="height: 2px;">
+                                           <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"/>
+                                        </div>
+                                           <br/>
+
+                                        <h3 style="padding-right: 20px !important; margin-right: 20px ! important">Zubehörartikel</h3>
+
+                                        <section class="s_text_block" style="background-image: none;" data-name="Texto">
+                                            <div class="container s_allow_columns">
+                                                <div class="oe_structure oe_structure_solo oe_unremovable oe_unmovable" id="oe_structure_website_sale_recommended_products" t-ignore="true" t-if="product.accessory_product_ids">
+                                                    <section data-snippet="s_dynamic_snippet_products" class="oe_unmovable oe_unremovable s_dynamic_snippet_products o_wsale_alternative_products s_dynamic pt32 pb32 o_colored_level s_product_product_borderless_1" data-name="Alternative Products" style="background-image: none;" t-att-data-filter-id="product._get_accessories_product_filter()" data-template-key="website_sale.dynamic_filter_template_product_product_borderless_1" data-product-category-id="all" data-number-of-elements="4" data-number-of-elements-small-devices="1" data-number-of-records="16" data-carousel-interval="5000" data-bs-original-title="" title="">
+                                                        <div class="container o_not_editable">
+                                                            <div class="css_non_editable_mode_hidden">
+                                                                <div class="missing_option_warning alert alert-info rounded-0 fade show d-none d-print-none o_default_snippet_text">
+                                                                    Your Dynamic Snippet will be displayed here...
+                                                                    This message is displayed because youy did not provide both a filter and a template to use.
+                                                                </div>
+                                                            </div>
+                                                            <div class="dynamic_snippet_template"/>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </t>
+                                </div>
+
+                            </div>
+
+                           <!-- <div class="tab-pane fade" id="nav_tabs_content_product_vitosec_td" role="tabpanel" aria-labelledby="nav_tabs_link_product_vitosec_td">
+                                <div class="oe_structure oe_empty" data-editor-message-default="true" data-editor-message="ARRASTRE BLOQUES AQUÍ">
+                                    <section class="s_text_block" style="background-image: none;" data-name="Texto">
+                                        <div class="s_allow_columns container-fluid">
+                                            <div class="row">
+                                                <t t-if="categories">
+                                                    <section class="pt32 pb32" id="product_full_spec_vitosec">
+                                                        <div class="container">
+                                                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                                                <h4 class="m-0">Specifications</h4>
+                                                            </div>
+
+                                                                <div id="product_specifications">
+                                                                    <div class="row">
+                                                                        <t t-foreach="categories" t-as="category">
+                                                                            <div class="col-lg-6">
+                                                                                <table class="table">
+                                                                                    <t t-if="len(categories) &gt; 1">
+                                                                                        <tr>
+                                                                                            <th class="text-start" t-att-colspan="2">
+                                                                                                <span t-if="category" t-field="category.name"/>
+                                                                                                <span t-else="">Uncategorized</span>
+                                                                                            </th>
+                                                                                        </tr>
+                                                                                    </t>
+                                                                                    <tr t-foreach="categories[category].filtered(lambda l: len(l.value_ids) &gt; 1)" t-as="ptal">
+                                                                                        <td class="w-25"><span t-field="ptal.attribute_id.name"/></td>
+                                                                                        <td class="w-75 text-muted">
+                                                                                            <t t-foreach="ptal.value_ids" t-as="pav">
+                                                                                                <span t-field="pav.name"/><t t-if="not pav_last"> or</t>
+                                                                                            </t>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <t t-set="single_value_attributes" t-value="categories[category]._prepare_single_value_for_display()"/>
+                                                                                    <tr t-foreach="single_value_attributes" t-as="attribute">
+                                                                                        <td class="w-25"><span t-field="attribute.name"/></td>
+                                                                                        <td class="w-75 text-muted">
+                                                                                            <t t-foreach="single_value_attributes[attribute]" t-as="ptal">
+                                                                                                <span t-field="ptal.product_template_value_ids._only_active().name"/><t t-if="not ptal_last">, </t>
+                                                                                            </t>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                        </t>
+                                                                        <t t-if="is_view_active('website_sale.product_tags')">
+                                                                            <div class="col-lg-6">
+                                                                                <table class="table">
+                                                                                    <t t-if="product.product_variant_ids.all_product_tag_ids">
+                                                                                        <tr>
+                                                                                            <th class="text-start" t-att-colspan="2">
+                                                                                                <span>Tags</span>
+                                                                                            </th>
+                                                                                        </tr>
+                                                                                        <tr class="d-flex">
+                                                                                            <td class="w-25 d-flex align-items-center"><span>Tags</span></td>
+                                                                                            <td class="w-75 text-muted">
+                                                                                                <t t-call="website_sale.product_tags">
+                                                                                                    <t t-set="all_product_tags" t-value="product.product_variant_ids.all_product_tag_ids"/>
+                                                                                                </t>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </t>
+                                                                            </table>
+                                                                        </div>
+                                                                    </t>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </t>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>  -->
+
+                            <div class="tab-pane fade" id="nav_tabs_content_product_vitosec_td" role="tabpanel" aria-labelledby="nav_tabs_link_product_vitosec_td">
+
+                                <div class="oe_structure oe_empty" data-editor-message-default="true" data-editor-message="ARRASTRE BLOQUES AQUÍ">
+
+                                    <section class="s_text_block" style="background-image: none;" data-name="Texto">
+
+                                        <div class="s_allow_columns container-fluid">
+                                            <div class="row">
+
+                                                <t t-set="attribute_lines" t-value="product.valid_product_template_attribute_line_ids"/>
+
+                                                <t t-if="attribute_lines">
+
+                                                    <section class="pt32 pb32" id="product_full_spec_vitosec">
+
+                                                        <div class="container">
+
+                                                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                                                <h4 class="m-0">Specifications</h4>
+                                                            </div>
+
+                                                            <div id="product_specifications">
+
+                                                                <div class="row">
+
+                                                                    <div class="col-lg-6">
+
+                                                                        <table class="table">
+
+                                                                            <tr t-foreach="attribute_lines.filtered(lambda l: len(l.value_ids) &gt; 1)" t-as="ptal">
+
+                                                                                <td class="w-25">
+                                                                                    <span t-field="ptal.attribute_id.name"/>
+                                                                                </td>
+
+                                                                                <td class="w-75 text-muted">
+
+                                                                                    <t t-foreach="ptal.value_ids" t-as="pav">
+
+                                                                                        <span t-field="pav.name"/>
+
+                                                                                        <t t-if="not pav_last">
+                                                                                            ,
+                                                                                        </t>
+
+                                                                                    </t>
+
+                                                                                </td>
+
+                                                                            </tr>
+
+                                                                            <t t-set="single_value_attributes" t-value="attribute_lines._prepare_single_value_for_display()"/>
+
+                                                                            <tr t-foreach="single_value_attributes" t-as="attribute">
+
+                                                                                <td class="w-25">
+                                                                                    <span t-field="attribute.name"/>
+                                                                                </td>
+
+                                                                                <td class="w-75 text-muted">
+
+                                                                                    <t t-foreach="single_value_attributes[attribute]" t-as="ptal">
+
+                                                                                        <span t-field="ptal.product_template_value_ids._only_active().name"/>
+
+                                                                                        <t t-if="not ptal_last">
+                                                                                            ,
+                                                                                        </t>
+
+                                                                                    </t>
+
+                                                                                </td>
+
+                                                                            </tr>
+
+                                                                        </table>
+
+                                                                    </div>
+
+                                                                    <t t-if="is_view_active('website_sale.product_tags')">
+
+                                                                        <div class="col-lg-6">
+
+                                                                            <table class="table">
+
+                                                                                <t t-if="product.product_variant_ids.all_product_tag_ids">
+
+                                                                                    <tr>
+
+                                                                                        <th class="text-start" t-att-colspan="2">
+                                                                                            <span>Tags</span>
+                                                                                        </th>
+
+                                                                                    </tr>
+
+                                                                                    <tr class="d-flex">
+
+                                                                                        <td class="w-25 d-flex align-items-center">
+                                                                                            <span>Tags</span>
+                                                                                        </td>
+
+                                                                                        <td class="w-75 text-muted">
+
+                                                                                            <t t-call="website_sale.product_tags">
+
+                                                                                                <t t-set="all_product_tags" t-value="product.product_variant_ids.all_product_tag_ids"/>
+
+                                                                                            </t>
+
+                                                                                        </td>
+
+                                                                                    </tr>
+
+                                                                                </t>
+
+                                                                            </table>
+
+                                                                        </div>
+
+                                                                    </t>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </section>
+
+                                                </t>
+
+                                            </div>
+                                        </div>
+
+                                    </section>
+
+                                </div>
+
+                            </div>
+
+                            <div class="tab-pane fade" id="nav_tabs_content_product_vitosec_2" role="tabpanel" aria-labelledby="nav_tabs_link_product_vitosec_2">
+                                <div class="oe_structure oe_empty" data-editor-message-default="true" data-editor-message="ARRASTRE BLOQUES AQUÍ">
+                                    <section class="s_text_block" style="background-image: none;" data-name="Texto">
+                                        <div class="container s_allow_columns">
+                                            <div class="oe_structure oe_structure_solo oe_unremovable oe_unmovable" id="oe_structure_website_sale_recommended_products" t-ignore="true" t-if="product.accessory_product_ids">
+                                                <section data-snippet="s_dynamic_snippet_products" class="oe_unmovable oe_unremovable s_dynamic_snippet_products o_wsale_alternative_products s_dynamic pt32 pb32 o_colored_level s_product_product_borderless_1" data-name="Alternative Products" style="background-image: none;" t-att-data-filter-id="product._get_accessories_product_filter()" data-template-key="website_sale.dynamic_filter_template_product_product_borderless_1" data-product-category-id="all" data-number-of-elements="4" data-number-of-elements-small-devices="1" data-number-of-records="16" data-carousel-interval="5000" data-bs-original-title="" title="">
+                                                    <div class="container o_not_editable">
+                                                        <div class="css_non_editable_mode_hidden">
+                                                            <div class="missing_option_warning alert alert-info rounded-0 fade show d-none d-print-none o_default_snippet_text">
+                                                                Your Dynamic Snippet will be displayed here...
+                                                                This message is displayed because youy did not provide both a filter and a template to use.
+                                                            </div>
+                                                        </div>
+                                                        <div class="dynamic_snippet_template"/>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </xpath>
+
+    </template>
+
+</odoo>

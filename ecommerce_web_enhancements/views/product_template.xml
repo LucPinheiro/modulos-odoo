@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_web_descriptions_form" model="ir.ui.view">
+        <field name="name">product.template.form.web.descriptions</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Descripciones web" name="web_description_product">
+                    <group>
+                        <group string="Descripción corta">
+                            <field name="short_description_product" widget="html" nolabel="1" colspan="2"/>
+                        </group>
+                        <group string="Descripción completa (Odoo)">
+                            <field name="website_description" widget="html" nolabel="1" colspan="2"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

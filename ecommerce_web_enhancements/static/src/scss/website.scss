@@ -1,0 +1,38 @@
+
+/*
+// Ribbons
+$ribbon-padding: 100px;
+.o_ribbon {
+    margin: 0;
+    @include font-size(1rem);
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: center;
+    pointer-events: none;
+}
+
+.o_ribbon_right {
+  @include o-ribbon-right();
+}
+
+.o_ribbon_left {
+  @include o-ribbon-left();
+}
+
+.o_ribbon_left_horizontal {
+  @include o-ribbon-left-horizontal();
+}
+
+.o_ribbon_rigth_horizontal {
+  @include o-ribbon-rigth-horizontal();
+}
+
+
+.o_tag_right {
+    @include o-tag-right();
+}
+
+.o_tag_left {
+    @include o-tag-left();
+}
+

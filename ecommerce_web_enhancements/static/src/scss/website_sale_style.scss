@@ -1,0 +1,973 @@
+ol {
+    list-style-type: none !important;
+    padding-left: 1em;
+}
+
+ol,
+ul {
+    padding-left: 0rem;
+    padding: 1px;
+}
+
+#breadcrumbs-one li {
+    float: left;
+    padding-left: 1.5em;
+}
+
+#breadcrumbs-one {
+    background: #FFFFFF;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e3e2e2;
+    border-radius: 1px;
+    overflow: hidden;
+    width: 100%;
+}
+
+#breadcrumbs-one li {
+    float: left;
+}
+
+#breadcrumbs-one a {
+    padding: 0.1em;
+    float: left;
+    text-decoration: none;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+    background-color: #FFFFFF;
+}
+
+#breadcrumbs-one li:first-child a {
+    padding-left: 0;
+    border-radius: 5px 0 0 5px;
+}
+
+#breadcrumbs-one a:hover {
+    background: #fff;
+}
+
+#breadcrumbs-one a::after,
+#breadcrumbs-one a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    margin-top: -1.5em;
+    border-top: 1.5em solid transparent;
+    border-bottom: 1.5em solid transparent;
+    border-left: 1em solid;
+    right: -1em;
+}
+
+#breadcrumbs-one a::after {
+    z-index: 2;
+    border-left-color: #FFFFFF;
+}
+
+#breadcrumbs-one a::before {
+    border-left-color: #ccc;
+    right: -1.1em;
+    z-index: 1;
+}
+
+#breadcrumbs-one a:hover::after {
+    border-left-color: #fff;
+}
+
+#breadcrumbs-one .current,
+#breadcrumbs-one .current:hover {
+    font-weight: bold;
+    background: none;
+}
+
+#breadcrumbs-one .current::after,
+#breadcrumbs-one .current::before {
+    content: normal;
+}
+
+
+
+
+/* =========================================================
+   BREADCRUMB FICHA PRODUCTO - ESTILO ODOO 17
+   ========================================================= */
+
+.vitosec_product_breadcrumb {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.vitosec_product_breadcrumb .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    width: 100%;
+    min-height: 34px;
+
+    margin: 0;
+    padding: 0 12px;
+
+    background-color: #ffffff;
+    border: 1px solid #dedede;
+    border-radius: 0;
+
+    overflow: hidden;
+}
+
+.vitosec_product_breadcrumb .breadcrumb-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    margin: 0 !important;
+    padding: 6px 22px 6px 16px !important;
+
+    white-space: nowrap;
+}
+
+/* Flecha gris */
+.vitosec_product_breadcrumb
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "" !important;
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-top: 17px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-left: 10px solid #d7d7d7;
+}
+
+/* Interior blanco */
+.vitosec_product_breadcrumb
+.breadcrumb-item + .breadcrumb-item::after {
+    content: "";
+
+    position: absolute;
+    left: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-left: 9px solid #ffffff;
+}
+
+.vitosec_product_breadcrumb .breadcrumb-item a {
+    color: #f29b11 !important;
+    text-decoration: none !important;
+}
+
+.vitosec_product_breadcrumb .breadcrumb-item.active {
+    color: #222 !important;
+}
+
+/* =========================================================
+   BREADCRUMB FICHA PRODUCTO - ESTILO ODOO 17
+   ========================================================= */
+
+#product_detail .breadcrumb {
+    width: auto !important;
+    min-height: auto !important;
+
+    margin: 0 0 20px 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+
+    overflow: visible !important;
+}
+
+#product_detail .breadcrumb-item {
+    padding: 0 !important;
+    margin: 0 !important;
+
+    font-size: 14px;
+    white-space: normal;
+}
+
+/* Recuperar separador sencillo / en ficha de producto */
+#product_detail .breadcrumb-item + .breadcrumb-item::before {
+    content: "/" !important;
+
+    position: static !important;
+    transform: none !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 8px !important;
+
+    border: 0 !important;
+
+    color: #777 !important;
+}
+
+/* Quitar la segunda flecha artificial */
+#product_detail .breadcrumb-item + .breadcrumb-item::after {
+    display: none !important;
+}
+
+#product_detail .breadcrumb-item a {
+    color: #f29b11 !important;
+    text-decoration: none !important;
+}
+
+#product_detail .breadcrumb-item.active {
+    color: #52677f !important;
+}
+
+
+/* =========================================================
+   FICHA PRODUCTO - BUSCADOR + BREADCRUMB COMO ODOO 17
+   ========================================================= */
+
+.vitosec-product-topbar {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.vitosec-product-topbar .row {
+    align-items: center;
+}
+
+/* Buscador */
+.vitosec-product-topbar .o_wsale_products_searchbar_form {
+    width: 100%;
+}
+
+.vitosec-product-topbar .input-group {
+    width: 100%;
+}
+
+/* Breadcrumb superior */
+.vitosec-product-topbar .breadcrumb {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    display: flex;
+    flex-wrap: nowrap !important;
+    align-items: center;
+
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.vitosec-product-topbar .breadcrumb-item {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Separadores / */
+.vitosec-product-topbar
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "/" !important;
+
+    position: static !important;
+    transform: none !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 8px !important;
+
+    border: 0 !important;
+
+    color: #777 !important;
+}
+
+.vitosec-product-topbar
+.breadcrumb-item + .breadcrumb-item::after {
+    display: none !important;
+}
+
+/* Enlaces */
+.vitosec-product-topbar .breadcrumb-item a {
+    color: #f29b11 !important;
+    text-decoration: none !important;
+}
+
+.vitosec-product-topbar .breadcrumb-item.active {
+    color: #4f647c !important;
+}
+
+
+/* =========================================================
+   OCULTAR EL BREADCRUMB NATIVO DUPLICADO DE LA FICHA
+   ========================================================= */
+
+#product_detail .breadcrumb,
+#product_detail .o_wsale_product_breadcrumb,
+#product_detail nav[aria-label="breadcrumb"] {
+    display: none !important;
+}
+
+/* =========================================================
+   CATEGORÍAS SHOP - ESTILO ODOO 17
+   SIN SCROLL HORIZONTAL
+   ========================================================= */
+
+#o_wsale_categories_filmstrip {
+    width: 100% !important;
+    overflow: visible !important;
+    margin-top: 10px;
+    margin-bottom: 14px;
+}
+
+#o_wsale_categories_filmstrip .o_wsale_filmstrip_wrapper {
+    width: 100% !important;
+    overflow: visible !important;
+}
+
+/* Categorías una al lado de otra y después saltan de línea */
+#o_wsale_categories_filmstrip .o_wsale_filmstrip {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+
+    width: 100% !important;
+
+    gap: 7px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+}
+
+/* Cada categoría ocupa solo lo necesario */
+#o_wsale_categories_filmstrip .o_wsale_filmstrip > li {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Evitar desplazamiento horizontal */
+#o_wsale_categories_filmstrip .o_wsale_filmstrip_wrapper {
+    scrollbar-width: none;
+}
+
+#o_wsale_categories_filmstrip .o_wsale_filmstrip_wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* =========================================================
+   TOOLBAR BUSCADOR + FILTROS
+   ========================================================= */
+
+.products_header {
+    width: 100% !important;
+    margin-bottom: 8px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+/* El buscador ocupa todo el espacio disponible */
+.products_header .o_wsale_products_header_search_form_container {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    margin-right: 0 !important;
+}
+
+.products_header .o_wsale_products_searchbar_form {
+    width: 100% !important;
+}
+
+.products_header .input-group {
+    width: 100% !important;
+}
+
+/* =========================================================
+   ORDENAR POR - HOVER/ACTIVO NARANJA VITOSEC
+   ========================================================= */
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item:active {
+    background-color: #f59a00 !important;
+    color: #000 !important;
+}
+
+/* =========================================================
+   MIGA DE PAN - SOLO TODOS LOS PRODUCTOS
+   ========================================================= */
+
+body:has(#products_grid) .breadcrumb {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+
+    width: 100% !important;
+
+    margin: 0 0 14px 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+
+    overflow: visible !important;
+}
+
+
+/* Cada categoría */
+body:has(#products_grid) .breadcrumb .breadcrumb-item {
+    display: flex !important;
+    align-items: center !important;
+
+    width: auto !important;
+    flex: 0 0 auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: 14px !important;
+    white-space: nowrap !important;
+}
+
+
+/* Categorías anteriores: naranja Vitosec */
+body:has(#products_grid)
+.breadcrumb
+.breadcrumb-item:not(:last-child) a {
+    color: #f29b11 !important;
+    text-decoration: none !important;
+}
+
+
+/* Hover */
+body:has(#products_grid)
+.breadcrumb
+.breadcrumb-item:not(:last-child) a:hover {
+    color: #d98600 !important;
+}
+
+
+/* Separador / */
+body:has(#products_grid)
+.breadcrumb
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "/" !important;
+
+    position: static !important;
+    display: inline-block !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 14px !important;
+
+    transform: none !important;
+    border: 0 !important;
+
+    color: #777 !important;
+}
+
+
+/* Quitar cualquier flecha artificial anterior */
+body:has(#products_grid)
+.breadcrumb
+.breadcrumb-item + .breadcrumb-item::after {
+    display: none !important;
+    content: none !important;
+}
+
+
+/* Última categoría: negro */
+body:has(#products_grid)
+.breadcrumb
+.breadcrumb-item:last-child,
+body:has(#products_grid)
+.breadcrumb
+.breadcrumb-item:last-child a,
+body:has(#products_grid)
+.breadcrumb
+.breadcrumb-item:last-child span {
+    color: #222 !important;
+}
+
+
+
+
+/* =========================================================
+   IMAGEN DE CATEGORÍA
+   ========================================================= */
+
+#o_wsale_categories_filmstrip .o_wsale_filmstrip_image,
+#o_wsale_categories_filmstrip .o_image_40_cover,
+#o_wsale_categories_filmstrip img {
+    width: 34px !important;
+    height: 34px !important;
+
+    min-width: 34px !important;
+    max-width: 34px !important;
+
+    margin-right: 10px !important;
+
+    object-fit: contain !important;
+
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+
+/* Categoría activa: borde solamente en la caja exterior */
+#o_wsale_categories_filmstrip .o_wsale_filmstrip > li:has(input:checked) {
+    border-color: #7c4a6b !important;
+}
+
+/* No volver a crear borde dentro cuando está seleccionada */
+#o_wsale_categories_filmstrip input:checked + label,
+#o_wsale_categories_filmstrip .btn-check:checked + .btn {
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* =========================================================
+   QUITAR BORDE INTERIOR DE CATEGORÍAS
+   ========================================================= */
+
+#o_wsale_categories_filmstrip .o_wsale_filmstrip .btn,
+#o_wsale_categories_filmstrip .o_wsale_filmstrip label,
+#o_wsale_categories_filmstrip .o_wsale_filmstrip a,
+#o_wsale_categories_filmstrip .o_wsale_filmstrip .btn-check + .btn,
+#o_wsale_categories_filmstrip .o_wsale_filmstrip .btn-check:checked + .btn {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   CATEGORÍAS SUPERIORES ODOO 19 - VITOSEC
+   ========================================================= */
+
+/* Cada LI: solamente distribución */
+#o_wsale_categories_filmstrip .o_wsale_filmstrip > li {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    background: transparent !important;
+}
+
+
+/* Enlace: sin ningún borde */
+#o_wsale_categories_filmstrip .o_wsale_filmstrip_link {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+
+    background: transparent !important;
+    text-decoration: none !important;
+}
+
+
+/* ESTA ES LA CAJA REAL DE ODOO 19 */
+#o_wsale_categories_filmstrip .o_wsale_filmstrip_item {
+    display: flex !important;
+    align-items: center !important;
+
+    width: auto !important;
+    min-width: 0 !important;
+
+    height: 42px !important;
+    min-height: 42px !important;
+
+    padding: 4px 12px !important;
+    margin: 0 !important;
+
+    background: #ffffff !important;
+
+    /* ÚNICO borde */
+    border: 1px solid #d8d8d8 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+
+/* =========================================================
+   IMAGEN DE CATEGORÍA
+   ========================================================= */
+
+#o_wsale_categories_filmstrip .o_wsale_filmstrip_image {
+    flex: 0 0 34px !important;
+
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+
+    margin: 0 10px 0 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+
+/* Imagen real, si Odoo genera IMG */
+#o_wsale_categories_filmstrip .o_wsale_filmstrip_image img {
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: contain !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+
+/* Texto */
+#o_wsale_categories_filmstrip .o_wsale_filmstrip_item > span {
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
+    background: transparent !important;
+
+    white-space: nowrap !important;
+
+    color: #333 !important;
+}
+
+
+/* Categoría seleccionada */
+#o_wsale_categories_filmstrip
+.o_wsale_filmstrip_item.active {
+    border-color: #7c4a6b !important;
+    border-radius: 0 !important;
+
+    background: #ffffff !important;
+    box-shadow: none !important;
+}
+
+
+/* Texto de categoría seleccionada */
+#o_wsale_categories_filmstrip
+.o_wsale_filmstrip_item.active > span {
+    color: #7c4a6b !important;
+}
+
+/* =========================================================
+   CATEGORÍAS - HOVER NARANJA VITOSEC
+   ========================================================= */
+
+#o_wsale_categories_filmstrip
+.o_wsale_filmstrip_link:hover
+.o_wsale_filmstrip_item {
+    border-color: #f59a00 !important;
+}
+
+/* =========================================================
+   PRODUCT CARDS - TODAS ALINEADAS
+   ========================================================= */
+
+/* La tarjeta ocupa toda la altura disponible */
+#products_grid .oe_product {
+    height: 100% !important;
+}
+
+/* Contenedor principal de la tarjeta */
+#products_grid .o_wsale_product_grid_wrapper,
+#products_grid .o_wsale_product_information {
+    height: 100% !important;
+}
+
+/* Información en columna */
+#products_grid .o_wsale_product_information {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Referencia interna: misma altura para todos */
+#products_grid .vitosec_product_default_code {
+    min-height: 24px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+}
+
+/* Nombre del producto:
+   reserva espacio para hasta 2 líneas */
+#products_grid .o_wsale_products_item_title {
+    min-height: 44px !important;
+    margin-bottom: 6px !important;
+}
+
+/* El bloque inferior se va siempre hacia abajo */
+#products_grid .o_wsale_product_sub {
+    margin-top: auto !important;
+    width: 100% !important;
+}
+
+/* Precio siempre en la misma zona */
+#products_grid .vitosec_product_price {
+    min-height: 28px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Botón siempre alineado abajo */
+#products_grid .o_wsale_product_btn_2 {
+    min-height: 48px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* ==================================================
+   BOTÓN AÑADIR A LA CESTA - CARRUSEL HOME
+   ================================================== */
+
+.s_dynamic_snippet .btn-primary,
+.s_dynamic_snippet .o_add_cart,
+.s_dynamic_snippet_products .btn-primary,
+.s_products_carousel .btn-primary,
+.s_product_catalog .btn-primary {
+    --btn-bg: #ff9900 !important;
+    --btn-border-color: #ff9900 !important;
+    --btn-hover-bg: #e88a00 !important;
+    --btn-hover-border-color: #e88a00 !important;
+
+    background: #ff9900 !important;
+    background-color: #ff9900 !important;
+    background-image: none !important;
+
+    border-color: #ff9900 !important;
+    color: #1f1f1f !important;
+
+    border-radius: 11px !important;
+}
+
+/* HOVER */
+.s_dynamic_snippet .btn-primary:hover,
+.s_dynamic_snippet .o_add_cart:hover,
+.s_dynamic_snippet_products .btn-primary:hover,
+.s_products_carousel .btn-primary:hover,
+.s_product_catalog .btn-primary:hover {
+    background: #e88a00 !important;
+    background-color: #e88a00 !important;
+    border-color: #e88a00 !important;
+    color: #1f1f1f !important;
+}
+
+/* =========================================
+   BOTÓN CARRUSEL PRODUCTOS HOME - NARANJA
+   ========================================= */
+
+.s_dynamic_snippet_products .btn,
+.s_dynamic_snippet_products button,
+.s_dynamic_snippet_products a[class*="btn"] {
+    --bs-btn-bg: #ff9900 !important;
+    --bs-btn-border-color: #ff9900 !important;
+    --bs-btn-hover-bg: #e88a00 !important;
+    --bs-btn-hover-border-color: #e88a00 !important;
+    --bs-btn-active-bg: #e88a00 !important;
+    --bs-btn-active-border-color: #e88a00 !important;
+
+    background-color: #ff9900 !important;
+    border-color: #ff9900 !important;
+    color: #1f1f1f !important;
+}
+
+/* HOVER */
+.s_dynamic_snippet_products .btn:hover,
+.s_dynamic_snippet_products button:hover,
+.s_dynamic_snippet_products a[class*="btn"]:hover {
+    background-color: #e88a00 !important;
+    border-color: #e88a00 !important;
+    color: #1f1f1f !important;
+}
+
+/* ==================================================
+   CARRUSEL HOME - TARJETAS SIN BORDES REDONDEADOS
+   ================================================== */
+
+.s_dynamic_snippet_products {
+    --o-wsale-card-thumb-border-radius: 0px !important;
+    --o-wsale-opt-border-radius: 0px !important;
+    --bs-border-radius: 0px !important;
+    --bs-card-border-radius: 0px !important;
+}
+
+/* Contenedor de cada producto */
+.s_dynamic_snippet_products .card,
+.s_dynamic_snippet_products .o_carousel_product_card,
+.s_dynamic_snippet_products [class*="card"] {
+    border-radius: 0 !important;
+}
+
+/* Imagen / zona superior */
+.s_dynamic_snippet_products .card img,
+.s_dynamic_snippet_products [class*="thumb"],
+.s_dynamic_snippet_products [class*="image"] {
+    border-radius: 0 !important;
+}
+
+/* BOTÓN también recto */
+.s_dynamic_snippet_products .btn {
+    border-radius: 0 !important;
+}
+
+.s_dynamic_snippet_products .vitosec_product_name a {
+    color: #ff9900 !important;
+}
+
+.s_dynamic_snippet_products .vitosec_product_separator {
+    width: 100%;
+    height: 1px;
+    background-color: #dddddd;
+    margin: 8px 0 10px 0;
+}
+
+/* ==================================================
+   ALINEAR NOMBRES Y LÍNEAS DE TODAS LAS TARJETAS
+   ================================================== */
+
+.s_dynamic_snippet_products .vitosec_product_name {
+    line-height: 1.35 !important;
+
+    /* Reservar espacio para 4 líneas */
+    min-height: calc(1.35em * 4) !important;
+
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Línea siempre a la misma altura */
+.s_dynamic_snippet_products .vitosec_product_separator {
+    width: 100%;
+    height: 1px;
+    background-color: #dddddd;
+    margin: 8px 0 10px 0;
+}
+
+/* PRECIO MÁS DESTACADO */
+.s_dynamic_snippet_products .product_price {
+    color: #111111 !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+}
+
+/* =========================================================
+   FICHA PRODUCTO VITOSEC
+   PRECIO + BOTÓN CARRITO
+   ========================================================= */
+
+/* PRECIO MÁS GRANDE Y DESTACADO */
+#product_detail .product_price,
+#product_detail .oe_price,
+#product_detail .product_price .oe_price {
+    color: #111111 !important;
+    font-size: 26px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+}
+
+/* BOTÓN AÑADIR A LA CESTA */
+#product_detail #add_to_cart,
+#product_detail a#add_to_cart,
+#product_detail button#add_to_cart {
+    background-color: #f29b11 !important;
+    border-color: #f29b11 !important;
+    color: #111111 !important;
+    font-weight: 600 !important;
+}
+
+/* ICONO Y TEXTO DEL BOTÓN */
+#product_detail #add_to_cart i,
+#product_detail #add_to_cart span {
+    color: #111111 !important;
+}
+
+/* HOVER */
+#product_detail #add_to_cart:hover,
+#product_detail a#add_to_cart:hover,
+#product_detail button#add_to_cart:hover {
+    background-color: #d98600 !important;
+    border-color: #d98600 !important;
+    color: #111111 !important;
+}
+
+/* =========================================================
+   FICHA PRODUCTO - PESTAÑAS VITOSEC
+   ========================================================= */
+
+/* PESTAÑAS NO SELECCIONADAS = NARANJA */
+#product_detail ~ * .nav-tabs .nav-link,
+.s_tabs_nav .nav-tabs .nav-link {
+    color: #f29b11 !important;
+    font-weight: 500 !important;
+}
+
+/* PESTAÑA SELECCIONADA = NEGRO */
+#product_detail ~ * .nav-tabs .nav-link.active,
+.s_tabs_nav .nav-tabs .nav-link.active {
+    color: #212529 !important;
+    font-weight: 500 !important;
+}
+
+/* HOVER DE LAS NO SELECCIONADAS */
+#product_detail ~ * .nav-tabs .nav-link:not(.active):hover,
+.s_tabs_nav .nav-tabs .nav-link:not(.active):hover {
+    color: #d98600 !important;
+}
+
+/* EVITAR QUE ODOO CAMBIE EL COLOR AL HACER FOCUS */
+.s_tabs_nav .nav-tabs .nav-link.active:hover,
+.s_tabs_nav .nav-tabs .nav-link.active:focus {
+    color: #212529 !important;
+}
