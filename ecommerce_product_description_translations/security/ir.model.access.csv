@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ecommerce_product_description_translation_wizard,ecommerce.product.description.translation.wizard,model_ecommerce_product_description_translation_import_wizard,product.group_product_manager,1,1,1,1

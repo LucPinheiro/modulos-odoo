@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_translation_status" model="ir.ui.view">
+        <field name="name">product.template.form.translation.status</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="ecommerce_web_enhancements.product_template_web_descriptions_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='web_description_product']" position="inside">
+                <group string="Seguimiento de traducciones">
+                    <field name="html_translation_state"/>
+                    <field name="html_translation_import_date" readonly="1"/>
+                    <field name="html_translation_user_id" readonly="1"/>
+                    <field name="html_pending_preparation" readonly="1"/>
+                    <field name="standard_import_date" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_template_list_translation_status" model="ir.ui.view">
+        <field name="name">product.template.list.translation.status</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="html_translation_state" widget="badge" optional="show"
+                       decoration-warning="html_translation_state == 'pending'"
+                       decoration-info="html_translation_state == 'partial'"
+                       decoration-success="html_translation_state == 'translated'"/>
+                <field name="html_translation_import_date" optional="hide"/>
+                <field name="html_translation_user_id" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_template_search_translation_status" model="ir.ui.view">
+        <field name="name">product.template.search.translation.status</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter name="html_translation_pending" string="Pendientes de traducir" domain="[('html_translation_state','=','pending')]"/>
+                <filter name="html_translation_partial" string="En proceso" domain="[('html_translation_state','=','partial')]"/>
+                <filter name="html_translation_translated" string="Traducidos" domain="[('html_translation_state','=','translated')]"/>
+                <filter name="html_pending_preparation_filter" string="Pendientes de preparar HTML" domain="[('html_pending_preparation','=',True)]"/>
+                <group>
+                    <filter name="group_by_html_translation_state" string="Estado traducción HTML" context="{'group_by':'html_translation_state'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
