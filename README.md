@@ -74,16 +74,19 @@ Este repositorio está pensado tanto como portafolio profesional como base de tr
 * **📄 website_sale_product_description_extended:** Expansión que inyecta capacidades de texto rico y multidimensional para mostrar fichas y descripciones técnicas avanzadas en el portal web.
 
 ---
-
 ## Odoo-17
 
+### 🌐 Sitio Web y Portal de Clientes
+* **🔄 [owl_website_rma](./owl_website_rma) (OWL Website RMA):** Portal web interactivo basado en el framework OWL para la solicitud y gestión de devoluciones de mercancía (RMA) directamente desde el área de clientes.
+
 ### 📦 Gestión de Inventario y Logística
-* **🚚 tms (Transport Management System):** Gestión de transporte: rutas, solicitudes, viajes, vehículos, conductores, kilometraje y facturación integrado en Odoo.
+* **🚚 [tms](./tms) (Transport Management System):** Gestión de transporte: rutas, solicitudes, viajes, vehículos, conductores, kilometraje y facturación integrado en Odoo.
 
 ### 👤 Datos Maestros y Contactos
-* **🥦 food_allergens_product:** Gestión de alérgenos alimentarios asociados a productos para control e información obligatoria.
+* **🥦 [food_allergens_product](./food_allergens_product):** Gestión de alérgenos alimentarios asociados a productos para control e información obligatoria.
 
 ---
+
 
 ## Odoo-18
 
